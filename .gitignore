@@ -20,6 +20,12 @@ Thumbs.db
 # 临时备份
 .apptest-backup/
 
+# 由 scripts/gen-icons.mjs 生成的 PNG 图标（仓库只保留 icon.svg）
+# clone 后执行 `node scripts/gen-icons.mjs` 即可生成
+public/icon-180.png
+public/icon-192.png
+public/icon-512.png
+
 # 日志
 *.log
 npm-debug.log*
