@@ -3,6 +3,7 @@
 每天花 1~3 分钟写下今天的工作，AI 把它变成一篇属于你的 4 / 6 / 8 格漫画，长期积累成个人漫画集。
 
 - 在线使用：<https://worktoon.app.workbuddy.host/>
+- 源码仓库：<https://github.com/chenzhe223-tech/worktoon>
 - 移动端优先：iOS Safari / Android Chrome / 鸿蒙浏览器，单手可操作，无横向溢出
 - PWA：可添加到主屏幕，具备基础离线能力
 
@@ -74,10 +75,10 @@ npm run test:styles  # 12 种画风出图 + 体检 + 生成对比页（test-outp
 npm run test:story   # 分镜层检查：事实绑定 / 景别不重复 / 是否编造
 ```
 
-图标由脚本生成（仓库里已包含，如需重新生成）：
+PWA 图标由脚本生成：仓库只保留 `public/icon.svg`，PNG 不入库，clone 后执行：
 
 ```bash
-node scripts/gen-icons.mjs
+node scripts/gen-icons.mjs     # 生成 public/icon-180.png / 192 / 512
 ```
 
 ### 接入你自己的云服务
@@ -140,7 +141,7 @@ worktoon/
 │  ├─ pages/                7 个页面
 │  └─ components/ui.tsx     图标与基础组件
 ├─ scripts/                 图标生成与回归测试脚本
-└─ test-output/             画风回归测试产物（含 12 种风格对比页）
+└─ test-output/             画风回归测试产物（未入库，跑 test:styles 后生成）
 ```
 
 ---

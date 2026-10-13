@@ -29,6 +29,9 @@ public/icon-512.png
 # 测试产物（scripts/style-test.ts / story-test.ts 生成的 SVG 与对比页）
 test-output/
 
+# 一次性排查脚本（云端连通性探测，仅本地使用）
+scripts/probe*.mjs
+
 # 日志
 *.log
 npm-debug.log*
