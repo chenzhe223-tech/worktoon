@@ -111,6 +111,15 @@ function inspect(svg: string) {
     gradients: count(/<linearGradient\b/g) + count(/<radialGradient\b/g),
     colors: new Set((svg.match(/#[0-9a-fA-F]{6}/g) || []).map((c) => c.toLowerCase())).size,
     textTags: count(/<text\b/g),
+    /** 独立绘制形状总数：对应提示词里「至少 45 个形状」的硬指标 */
+    shapes:
+      count(/<rect\b/g) +
+      count(/<circle\b/g) +
+      count(/<ellipse\b/g) +
+      count(/<path\b/g) +
+      count(/<polygon\b/g) +
+      count(/<polyline\b/g) +
+      count(/<line\b/g),
   }
 }
 
@@ -171,7 +180,9 @@ async function main() {
       const m = inspect(svg)
       rows.push({ id: style.id, name: style.name, ms, raw, ...m, accent: ad.accent })
       if (svg) files.push({ id: style.id, name: style.name, svg })
-      console.log(`ok ${(ms / 1000).toFixed(1)}s  raw=${raw}  svg=${m.len}  path=${m.paths} rect=${m.rects} circ=${m.circles} grad=${m.gradients} colors=${m.colors} text=${m.textTags}`)
+      console.log(
+        `ok ${(ms / 1000).toFixed(1)}s  raw=${raw}  svg=${m.len}  shapes=${m.shapes}  path=${m.paths} rect=${m.rects} circ=${m.circles} grad=${m.gradients} colors=${m.colors} text=${m.textTags}`,
+      )
       if (svg) writeFileSync(join(OUT_DIR, `${style.id}-p${panelIdx + 1}.svg`), svg)
     } catch (e: any) {
       rows.push({ id: style.id, name: style.name, error: String(e?.message || e) })
