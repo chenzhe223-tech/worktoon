@@ -1,0 +1,26 @@
+{
+  "name": "worktoon",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "vite build && vite preview --host 0.0.0.0 --port ${PORT:-3000}",
+    "test:styles": "esbuild scripts/style-test.ts --bundle --platform=node --format=esm --outfile=.tmp/style-test.mjs --log-level=error && node .tmp/style-test.mjs",
+    "test:story": "esbuild scripts/story-test.ts --bundle --platform=node --format=esm --outfile=.tmp/story-test.mjs --log-level=error && node .tmp/story-test.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tencent-ai/workbuddy-cloud-sdk": "dev"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

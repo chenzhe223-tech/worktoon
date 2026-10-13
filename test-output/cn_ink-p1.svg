@@ -1,0 +1,266 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6F1E6"/>
+      <stop offset="1" stop-color="#EDE6D4"/>
+    </linearGradient>
+    <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6F1E6" stop-opacity="0"/>
+      <stop offset="1" stop-color="#D8D2C2" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9E2CF"/>
+      <stop offset="1" stop-color="#DCD5C2"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EFF4F0"/>
+      <stop offset="1" stop-color="#DDE4E0"/>
+    </linearGradient>
+    <linearGradient id="hairG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4A3A30"/>
+      <stop offset="1" stop-color="#2E241E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background paper -->
+  <rect x="0" y="0" width="800" height="1000" fill="url(#paper)"/>
+
+  <!-- distant city through window -->
+  <g opacity="0.55">
+    <rect x="470" y="120" width="290" height="420" fill="url(#sky)" rx="4"/>
+    <g fill="#8C8C86">
+      <rect x="488" y="290" width="34" height="250" opacity="0.6"/>
+      <rect x="530" y="230" width="42" height="310" opacity="0.75"/>
+      <rect x="582" y="320" width="30" height="220" opacity="0.5"/>
+      <rect x="620" y="200" width="48" height="340" opacity="0.8"/>
+      <rect x="678" y="280" width="36" height="260" opacity="0.6"/>
+      <rect x="722" y="340" width="26" height="200" opacity="0.45"/>
+    </g>
+    <!-- window mist layer -->
+    <rect x="470" y="120" width="290" height="420" fill="url(#mist)"/>
+  </g>
+
+  <!-- window frame -->
+  <g fill="none" stroke="#2C2A28" stroke-width="6" opacity="0.85">
+    <rect x="470" y="120" width="290" height="420" rx="4"/>
+    <line x1="615" y1="120" x2="615" y2="540"/>
+    <line x1="470" y1="330" x2="760" y2="330"/>
+  </g>
+
+  <!-- mid-ground wall / shelf simplified -->
+  <g opacity="0.5" fill="#8C8C86">
+    <rect x="60" y="230" width="180" height="12"/>
+    <rect x="80" y="180" width="40" height="50" rx="2"/>
+    <rect x="135" y="195" width="55" height="35" rx="2"/>
+    <path d="M60 340 Q150 330 240 342 L240 346 Q150 336 60 344 Z"/>
+    <rect x="90" y="300" width="48" height="40" rx="2"/>
+  </g>
+  <!-- potted plant mid-ground -->
+  <g>
+    <path d="M150 500 C120 470 118 440 138 418 C132 452 140 470 156 492 Z" fill="#5C6B58" opacity="0.8"/>
+    <path d="M158 498 C160 460 172 436 194 424 C182 456 174 478 166 500 Z" fill="#6E7D66" opacity="0.85"/>
+    <path d="M152 500 C140 480 122 472 106 474 C124 486 138 494 150 504 Z" fill="#4E5C4B" opacity="0.8"/>
+    <path d="M132 500 L182 500 L174 546 L140 546 Z" fill="#9A8F79" stroke="#2C2A28" stroke-width="3"/>
+  </g>
+
+  <!-- desk -->
+  <path d="M70 760 L730 760 L700 820 L100 820 Z" fill="#C9BFA6" stroke="#2C2A28" stroke-width="5"/>
+  <path d="M100 820 L700 820 L690 850 L110 850 Z" fill="#A89E86" opacity="0.6"/>
+
+  <!-- desk items back -->
+  <!-- calculator -->
+  <g transform="translate(585,690) rotate(6)">
+    <rect x="0" y="0" width="76" height="104" rx="6" fill="#3A3835" stroke="#2C2A28" stroke-width="4"/>
+    <rect x="9" y="9" width="58" height="24" rx="3" fill="#C9CFC9"/>
+    <g fill="#6B665E">
+      <rect x="9" y="42" width="16" height="14" rx="2"/><rect x="30" y="42" width="16" height="14" rx="2"/><rect x="51" y="42" width="16" height="14" rx="2"/>
+      <rect x="9" y="62" width="16" height="14" rx="2"/><rect x="30" y="62" width="16" height="14" rx="2"/><rect x="51" y="62" width="16" height="14" rx="2"/>
+      <rect x="9" y="82" width="16" height="14" rx="2"/><rect x="30" y="82" width="16" height="14" rx="2"/><rect x="51" y="82" width="16" height="14" rx="2"/>
+    </g>
+    <rect x="51" y="82" width="16" height="14" rx="2" fill="#8A4A3A"/>
+  </g>
+
+  <!-- pen holder -->
+  <g>
+    <path d="M470 700 L510 700 L505 740 L475 740 Z" fill="#7C7466" stroke="#2C2A28" stroke-width="3"/>
+    <line x1="482" y1="700" x2="474" y2="664" stroke="#2C2A28" stroke-width="4"/>
+    <line x1="494" y1="700" x2="500" y2="660" stroke="#5A544C" stroke-width="4"/>
+  </g>
+
+  <!-- printed sheets spread on desk -->
+  <g>
+    <g transform="translate(150,690) rotate(-8)">
+      <rect x="0" y="0" width="120" height="160" fill="#FBF7EC" stroke="#2C2A28" stroke-width="3"/>
+      <g stroke="#8C8C86" stroke-width="3" opacity="0.8">
+        <line x1="14" y1="26" x2="106" y2="26"/><line x1="14" y1="42" x2="106" y2="42"/>
+        <line x1="14" y1="58" x2="106" y2="58"/><line x1="14" y1="74" x2="106" y2="74"/>
+        <line x1="14" y1="90" x2="106" y2="90"/><line x1="14" y1="106" x2="106" y2="106"/>
+      </g>
+    </g>
+    <g transform="translate(238,706) rotate(4)">
+      <rect x="0" y="0" width="118" height="150" fill="#F3EDDD" stroke="#2C2A28" stroke-width="3"/>
+      <g stroke="#8C8C86" stroke-width="3" opacity="0.7">
+        <line x1="12" y1="24" x2="104" y2="24"/><line x1="12" y1="40" x2="104" y2="40"/>
+        <line x1="12" y1="56" x2="104" y2="56"/><line x1="12" y1="72" x2="104" y2="72"/>
+        <line x1="12" y1="88" x2="104" y2="88"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- FOCAL: monitor with three quotation spreadsheets -->
+  <g>
+    <path d="M300 470 L560 470 L568 680 L292 680 Z" fill="#2C2A28"/>
+    <rect x="312" y="482" width="236" height="182" rx="4" fill="url(#screen)"/>
+    <!-- three side-by-side quotation sheets -->
+    <g>
+      <g transform="translate(320,494)">
+        <rect x="0" y="0" width="68" height="150" rx="2" fill="#FFFFFF" stroke="#5B6B7A" stroke-width="2.5"/>
+        <rect x="0" y="0" width="68" height="16" rx="2" fill="#8C97A4"/>
+        <g stroke="#B9C2CC" stroke-width="2">
+          <line x1="6" y1="30" x2="62" y2="30"/><line x1="6" y1="46" x2="62" y2="46"/>
+          <line x1="6" y1="62" x2="62" y2="62"/><line x1="6" y1="78" x2="62" y2="78"/>
+          <line x1="6" y1="94" x2="62" y2="94"/><line x1="6" y1="110" x2="62" y2="110"/>
+          <line x1="6" y1="126" x2="62" y2="126"/>
+        </g>
+        <rect x="6" y="132" width="40" height="10" fill="#8C8C86"/>
+      </g>
+      <g transform="translate(396,494)">
+        <rect x="0" y="0" width="68" height="150" rx="2" fill="#FFFFFF" stroke="#5B6B7A" stroke-width="2.5"/>
+        <rect x="0" y="0" width="68" height="16" rx="2" fill="#9AA5B1"/>
+        <g stroke="#B9C2CC" stroke-width="2">
+          <line x1="6" y1="30" x2="62" y2="30"/><line x1="6" y1="46" x2="62" y2="46"/>
+          <line x1="6" y1="62" x2="62" y2="62"/><line x1="6" y1="78" x2="62" y2="78"/>
+          <line x1="6" y1="94" x2="62" y2="94"/><line x1="6" y1="110" x2="62" y2="110"/>
+          <line x1="6" y1="126" x2="62" y2="126"/>
+        </g>
+        <rect x="6" y="132" width="48" height="10" fill="#8C8C86"/>
+      </g>
+      <g transform="translate(472,494)">
+        <rect x="0" y="0" width="68" height="150" rx="2" fill="#FFFFFF" stroke="#5B6B7A" stroke-width="2.5"/>
+        <rect x="0" y="0" width="68" height="16" rx="2" fill="#7E8994"/>
+        <g stroke="#B9C2CC" stroke-width="2">
+          <line x1="6" y1="30" x2="62" y2="30"/><line x1="6" y1="46" x2="62" y2="46"/>
+          <line x1="6" y1="62" x2="62" y2="62"/><line x1="6" y1="78" x2="62" y2="78"/>
+          <line x1="6" y1="94" x2="62" y2="94"/><line x1="6" y1="110" x2="62" y2="110"/>
+          <line x1="6" y1="126" x2="62" y2="126"/>
+        </g>
+        <rect x="6" y="132" width="34" height="10" fill="#8C8C86"/>
+      </g>
+    </g>
+    <!-- soft ink glow around monitor -->
+    <ellipse cx="430" cy="560" rx="190" ry="150" fill="#F6F1E6" opacity="0.18"/>
+    <!-- stand -->
+    <rect x="418" y="680" width="24" height="40" fill="#3A3835"/>
+    <rect x="390" y="718" width="80" height="16" rx="6" fill="#3A3835" stroke="#2C2A28" stroke-width="3"/>
+  </g>
+
+  <!-- small cinnabar seal accent -->
+  <rect x="706" y="884" width="34" height="34" rx="4" fill="#A34A3C" opacity="0.85"/>
+
+  <!-- Xiaolin seated, leaning forward -->
+  <g>
+    <!-- chair -->
+    <path d="M250 640 C236 690 234 740 246 772 L300 772 C288 736 288 690 296 644 Z" fill="#4A4238" stroke="#2C2A28" stroke-width="4"/>
+    <rect x="238" y="764" width="90" height="20" rx="8" fill="#4A4238" stroke="#2C2A28" stroke-width="4"/>
+    <line x1="282" y1="784" x2="282" y2="830" stroke="#2C2A28" stroke-width="7"/>
+    <path d="M252 830 L312 830" stroke="#2C2A28" stroke-width="7"/>
+
+    <!-- legs -->
+    <path d="M296 700 C330 716 366 726 396 734 L400 756 C364 750 328 742 296 730 Z" fill="#3E3B40" stroke="#2C2A28" stroke-width="4"/>
+    <path d="M300 716 C334 732 368 744 398 752 L402 748 L406 770 C368 764 330 752 298 738 Z" fill="#332F34" opacity="0.9"/>
+    <!-- shoes -->
+    <path d="M396 734 C418 734 432 740 434 752 L400 756 C392 750 390 740 396 734 Z" fill="#26242A" stroke="#2C2A28" stroke-width="3"/>
+    <path d="M402 752 C424 752 438 758 440 770 L406 774 C398 768 396 758 402 752 Z" fill="#26242A" stroke="#2C2A28" stroke-width="3"/>
+
+    <!-- torso, knit ivory sweater leaning forward -->
+    <path d="M258 596 C246 640 244 684 256 720 C286 736 322 742 352 736 C366 700 372 660 366 620 C332 606 292 598 258 596 Z"
+      fill="#EFE9DA" stroke="#2C2A28" stroke-width="5"/>
+    <!-- sweater folds -->
+    <g stroke="#B9AF98" stroke-width="3" fill="none" opacity="0.8">
+      <path d="M272 630 C280 664 280 694 272 718"/>
+      <path d="M306 626 C314 662 316 694 310 726"/>
+      <path d="M340 622 C352 656 356 690 350 726"/>
+      <path d="M264 666 C300 676 336 678 360 672"/>
+    </g>
+
+    <!-- right arm reaching mouse on desk -->
+    <path d="M352 626 C392 636 424 652 446 668 L438 692 C414 676 386 664 354 656 Z" fill="#EFE9DA" stroke="#2C2A28" stroke-width="5"/>
+    <!-- hand on mouse -->
+    <path d="M442 664 C456 662 468 666 472 674 C474 682 466 688 454 688 C444 686 438 678 442 664 Z" fill="#F2C9A8" stroke="#2C2A28" stroke-width="3.5"/>
+    <!-- mouse -->
+    <path d="M460 686 C474 686 482 692 480 700 C478 706 466 708 458 704 C452 700 452 690 460 686 Z" fill="#3A3835" stroke="#2C2A28" stroke-width="3"/>
+    <!-- cable -->
+    <path d="M480 698 C510 700 520 690 540 686" stroke="#2C2A28" stroke-width="2.5" fill="none"/>
+
+    <!-- left hand pressing printed sheet -->
+    <path d="M262 620 C240 634 218 650 200 662 L206 682 C228 672 250 656 270 642 Z" fill="#EFE9DA" stroke="#2C2A28" stroke-width="5"/>
+    <path d="M204 656 C194 656 186 662 186 670 C186 678 194 684 206 684 C216 684 222 676 220 668 Z" fill="#F2C9A8" stroke="#2C2A28" stroke-width="3.5"/>
+    <g stroke="#2C2A28" stroke-width="2" fill="none">
+      <path d="M192 664 C196 668 202 670 208 670"/>
+      <path d="M190 672 C195 676 202 678 209 677"/>
+    </g>
+
+    <!-- neck & head -->
+    <path d="M296 586 C294 598 292 604 288 610 L322 616 C318 606 316 598 316 590 Z" fill="#F2C9A8" stroke="#2C2A28" stroke-width="4"/>
+    <!-- face, leaning forward, slight profile-tilt -->
+    <path d="M292 528 C288 556 290 578 300 592 C310 602 326 602 334 592 C344 578 346 556 342 530 C330 522 304 522 292 528 Z"
+      fill="#F2C9A8" stroke="#2C2A28" stroke-width="4.5"/>
+    <!-- hair: short bob, side part, dark brown -->
+    <path d="M286 534 C280 556 282 584 292 598 C296 586 296 572 296 560 C304 568 316 570 324 564 C336 572 344 586 346 598 C354 582 356 554 350 532 C338 514 298 514 286 534 Z"
+      fill="url(#hairG)" stroke="#2C2A28" stroke-width="4"/>
+    <path d="M284 536 C300 526 336 524 350 534" stroke="#2C2A28" stroke-width="4" fill="none"/>
+    <path d="M292 542 C296 548 302 552 310 552" stroke="#5A463A" stroke-width="2.5" fill="none" opacity="0.7"/>
+
+    <!-- glasses thin frame -->
+    <g fill="none" stroke="#2C2A28" stroke-width="2.5">
+      <circle cx="308" cy="560" r="11"/>
+      <circle cx="334" cy="560" r="11"/>
+      <line x1="319" y1="560" x2="323" y2="560"/>
+    </g>
+    <!-- focused eyes: slightly narrowed, looking at screen -->
+    <path d="M303 559 C306 556 311 556 314 559" stroke="#2C2A28" stroke-width="2.5" fill="none"/>
+    <circle cx="309" cy="561" r="2.2" fill="#2C2A28"/>
+    <path d="M329 559 C332 556 337 556 340 559" stroke="#2C2A28" stroke-width="2.5" fill="none"/>
+    <circle cx="335" cy="561" r="2.2" fill="#2C2A28"/>
+    <!-- brows: slightly knitted -->
+    <path d="M300 549 C305 545 313 545 317 548" stroke="#2C2A28" stroke-width="3" fill="none"/>
+    <path d="M326 548 C330 545 338 545 343 549" stroke="#2C2A28" stroke-width="3" fill="none"/>
+    <!-- nose and mouth: focused, lips pressed -->
+    <path d="M321 566 C322 572 323 576 321 580" stroke="#C99B78" stroke-width="2.5" fill="none"/>
+    <path d="M314 588 C319 589 325 589 330 587" stroke="#2C2A28" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- blush subtle -->
+    <ellipse cx="298" cy="576" rx="6" ry="3.5" fill="#E8A98C" opacity="0.4"/>
+    <ellipse cx="346" cy="576" rx="5" ry="3" fill="#E8A98C" opacity="0.35"/>
+  </g>
+
+  <!-- foreground branch framing (plum-ish ink branch, upper left) -->
+  <g fill="none" stroke="#2C2A28" stroke-linecap="round">
+    <path d="M-10 60 C120 90 220 150 300 240" stroke-width="10" opacity="0.9"/>
+    <path d="M110 84 C150 110 180 140 196 172" stroke-width="6" opacity="0.8"/>
+    <path d="M210 140 C236 158 258 182 270 206" stroke-width="5" opacity="0.75"/>
+    <path d="M40 66 C70 90 90 112 100 138" stroke-width="5" opacity="0.7"/>
+  </g>
+  <!-- dry-brush flecks on branch -->
+  <g fill="#2C2A28" opacity="0.55">
+    <ellipse cx="150" cy="112" rx="10" ry="3" transform="rotate(30 150 112)"/>
+    <ellipse cx="250" cy="192" rx="9" ry="2.5" transform="rotate(40 250 192)"/>
+  </g>
+  <!-- ink leaves -->
+  <g fill="#3E4A40" opacity="0.75">
+    <path d="M196 176 C206 162 222 158 232 164 C222 176 208 182 196 176 Z"/>
+    <path d="M270 210 C280 196 296 192 306 198 C296 210 282 216 270 210 Z"/>
+    <path d="M100 140 C110 126 124 122 134 128 C124 140 110 146 100 140 Z"/>
+    <path d="M156 118 C166 106 180 102 190 108 C180 120 166 126 156 118 Z"/>
+  </g>
+
+  <!-- foreground mist band bottom -->
+  <rect x="0" y="760" width="800" height="240" fill="url(#mist)"/>
+  <ellipse cx="400" cy="960" rx="460" ry="130" fill="#E4DDCB" opacity="0.55"/>
+  <ellipse cx="150" cy="920" rx="260" ry="90" fill="#F6F1E6" opacity="0.6"/>
+
+  <!-- faint distant mountain layers on wall, ink-wash echo -->
+  <g opacity="0.28" fill="#8C8C86">
+    <path d="M60 560 C120 500 160 490 210 540 C250 570 280 570 320 540 L320 640 L60 640 Z"/>
+    <path d="M120 580 C170 540 200 536 240 566 L240 620 L120 620 Z" fill="#6E6A62"/>
+  </g>
+</svg>

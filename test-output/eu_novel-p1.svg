@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCE6E4"/>
+      <stop offset="1" stop-color="#C9D6D2"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B99B6E"/>
+      <stop offset="1" stop-color="#A8875C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background base -->
+  <rect x="0" y="0" width="800" height="1000" fill="#E7E3D6"/>
+
+  <!-- rear wall -->
+  <rect x="0" y="0" width="800" height="640" fill="#D8D2C0"/>
+  <!-- ceiling band -->
+  <rect x="0" y="0" width="800" height="90" fill="#CBC4AF"/>
+  <line x1="0" y1="90" x2="800" y2="90" stroke="#38403C" stroke-width="3"/>
+
+  <!-- ceiling lights -->
+  <rect x="120" y="40" width="150" height="16" rx="4" fill="#F4F1E6" stroke="#38403C" stroke-width="2.5"/>
+  <rect x="520" y="40" width="150" height="16" rx="4" fill="#F4F1E6" stroke="#38403C" stroke-width="2.5"/>
+
+  <!-- big window wall -->
+  <g stroke="#38403C" stroke-width="4">
+    <rect x="430" y="120" width="330" height="440" fill="url(#sky)"/>
+    <line x1="540" y1="120" x2="540" y2="560"/>
+    <line x1="650" y1="120" x2="650" y2="560"/>
+    <line x1="430" y1="270" x2="760" y2="270"/>
+    <line x1="430" y1="420" x2="760" y2="420"/>
+  </g>
+  <!-- city view simplified -->
+  <g fill="#9FB0AC" stroke="#38403C" stroke-width="2">
+    <rect x="450" y="330" width="55" height="230"/>
+    <rect x="560" y="300" width="45" height="260" fill="#8AA0A0"/>
+    <rect x="668" y="350" width="60" height="210"/>
+    <rect x="610" y="380" width="35" height="180" fill="#B5C2BC"/>
+  </g>
+  <g fill="#7C8F8C">
+    <rect x="460" y="350" width="8" height="8"/><rect x="478" y="350" width="8" height="8"/>
+    <rect x="572" y="330" width="8" height="8"/><rect x="572" y="352" width="8" height="8"/>
+    <rect x="682" y="375" width="8" height="8"/><rect x="700" y="375" width="8" height="8"/>
+  </g>
+
+  <!-- window sill -->
+  <rect x="418" y="558" width="354" height="20" fill="#B08A4E" stroke="#38403C" stroke-width="3"/>
+
+  <!-- plant by window -->
+  <g>
+    <ellipse cx="720" cy="520" rx="46" ry="52" fill="#6F8A6B" stroke="#38403C" stroke-width="3"/>
+    <ellipse cx="692" cy="486" rx="26" ry="30" fill="#7E9979" stroke="#38403C" stroke-width="3"/>
+    <ellipse cx="748" cy="482" rx="24" ry="28" fill="#5F7A5C" stroke="#38403C" stroke-width="3"/>
+    <path d="M696 566 h48 l-8 62 h-32 z" fill="#B0563C" stroke="#38403C" stroke-width="3"/>
+  </g>
+
+  <!-- floor -->
+  <rect x="0" y="640" width="800" height="360" fill="url(#floor)"/>
+  <g stroke="#8F7148" stroke-width="2" opacity="0.6">
+    <line x1="0" y1="700" x2="800" y2="700"/>
+    <line x1="0" y1="790" x2="800" y2="790"/>
+    <line x1="0" y1="900" x2="800" y2="900"/>
+    <line x1="200" y1="640" x2="120" y2="1000"/>
+    <line x1="600" y1="640" x2="700" y2="1000"/>
+  </g>
+
+  <!-- midground: neighbouring desks simplified -->
+  <g stroke="#38403C" stroke-width="3">
+    <rect x="30" y="520" width="230" height="14" fill="#8A6E4A"/>
+    <path d="M45 534 v150 M245 534 v150" stroke-width="8"/>
+    <rect x="52" y="452" width="120" height="70" rx="6" fill="#4C5A5C"/>
+    <rect x="80" y="470" width="64" height="34" rx="3" fill="#9FB4B8"/>
+    <rect x="180" y="478" width="40" height="30" fill="#EDE8D8"/>
+  </g>
+  <g stroke="#38403C" stroke-width="3">
+    <rect x="560" y="690" width="210" height="12" fill="#8A6E4A"/>
+    <path d="M572 702 v120 M758 702 v120" stroke-width="7"/>
+    <rect x="590" y="632" width="100" height="60" rx="5" fill="#4C5A5C"/>
+  </g>
+
+  <!-- main desk (focal) -->
+  <g>
+    <rect x="180" y="700" width="420" height="20" fill="#B08A4E" stroke="#38403C" stroke-width="3.5"/>
+    <path d="M200 720 v180 M580 720 v180" stroke="#38403C" stroke-width="9"/>
+    <rect x="215" y="745" width="160" height="10" fill="#9E7A42" stroke="#38403C" stroke-width="2.5"/>
+    <!-- drawer -->
+    <rect x="430" y="730" width="150" height="70" fill="#9E7A42" stroke="#38403C" stroke-width="3"/>
+    <circle cx="505" cy="765" r="5" fill="#38403C"/>
+  </g>
+
+  <!-- monitor with three quotation spreadsheets (FOCUS) -->
+  <g>
+    <rect x="330" y="470" width="220" height="170" rx="8" fill="#2E3735" stroke="#38403C" stroke-width="4"/>
+    <rect x="342" y="482" width="196" height="146" fill="#EDE8D8"/>
+    <!-- three sheets side by side -->
+    <g stroke="#38403C" stroke-width="2">
+      <rect x="348" y="488" width="58" height="134" fill="#DDEAE6"/>
+      <rect x="411" y="488" width="58" height="134" fill="#F2E9D2"/>
+      <rect x="474" y="488" width="58" height="134" fill="#EAD9D0"/>
+    </g>
+    <!-- grid rows (abstract, no letters) -->
+    <g stroke="#38403C" stroke-width="1.5">
+      <line x1="348" y1="506" x2="406" y2="506"/><line x1="348" y1="524" x2="406" y2="524"/>
+      <line x1="348" y1="542" x2="406" y2="542"/><line x1="348" y1="560" x2="406" y2="560"/>
+      <line x1="348" y1="578" x2="406" y2="578"/><line x1="348" y1="596" x2="406" y2="596"/>
+      <line x1="411" y1="506" x2="469" y2="506"/><line x1="411" y1="524" x2="469" y2="524"/>
+      <line x1="411" y1="542" x2="469" y2="542"/><line x1="411" y1="560" x2="469" y2="560"/>
+      <line x1="411" y1="578" x2="469" y2="578"/><line x1="411" y1="596" x2="469" y2="596"/>
+      <line x1="474" y1="506" x2="532" y2="506"/><line x1="474" y1="524" x2="532" y2="524"/>
+      <line x1="474" y1="542" x2="532" y2="542"/><line x1="474" y1="560" x2="532" y2="560"/>
+      <line x1="474" y1="578" x2="532" y2="578"/><line x1="474" y1="596" x2="532" y2="596"/>
+    </g>
+    <!-- highlighted bar row on middle sheet -->
+    <rect x="411" y="560" width="58" height="18" fill="#B0563C" stroke="#38403C" stroke-width="1.5"/>
+    <rect x="348" y="604" width="58" height="12" fill="#B08A4E"/>
+    <rect x="474" y="604" width="58" height="12" fill="#B08A4E"/>
+    <!-- stand -->
+    <rect x="425" y="640" width="30" height="34" fill="#2E3735" stroke="#38403C" stroke-width="3"/>
+    <rect x="395" y="672" width="90" height="14" rx="4" fill="#2E3735" stroke="#38403C" stroke-width="3"/>
+    <!-- screen glow -->
+    <polygon points="345,485 535,485 585,700 300,700" fill="#FFF8E0" opacity="0.12"/>
+  </g>
+
+  <!-- printed sheets on desk -->
+  <g stroke="#38403C" stroke-width="2">
+    <rect x="210" y="660" width="96" height="38" rx="2" fill="#F4F1E6" transform="rotate(-4 258 679)"/>
+    <rect x="238" y="668" width="96" height="38" rx="2" fill="#EDE8D8" transform="rotate(3 286 687)"/>
+    <g stroke-width="1.4">
+      <line x1="252" y1="678" x2="316" y2="684"/>
+      <line x1="252" y1="688" x2="316" y2="694"/>
+      <line x1="252" y1="698" x2="316" y2="704"/>
+    </g>
+    <!-- calculator -->
+    <rect x="556" y="664" width="44" height="34" rx="4" fill="#4C5A5C"/>
+    <rect x="562" y="670" width="32" height="10" fill="#DDEAE6"/>
+    <g fill="#B08A4E">
+      <circle cx="566" cy="688" r="3"/><circle cx="576" cy="688" r="3"/><circle cx="586" cy="688" r="3"/>
+    </g>
+    <!-- mouse -->
+    <ellipse cx="536" cy="712" rx="14" ry="9" fill="#D8D2C0" stroke="#38403C" stroke-width="2.5"/>
+    <!-- coffee mug -->
+    <rect x="618" y="680" width="26" height="30" rx="4" fill="#B0563C" stroke="#38403C" stroke-width="2.5"/>
+    <path d="M644 688 q14 4 0 14" fill="none" stroke="#38403C" stroke-width="2.5"/>
+  </g>
+
+  <!-- office chair -->
+  <g stroke="#38403C" stroke-width="3">
+    <path d="M258 560 q-30 90 -14 160 l14 4 q-16 -80 8 -150 z" fill="#4C5A5C"/>
+    <rect x="248" y="716" width="24" height="70" fill="#3A4443"/>
+    <path d="M240 796 h96 M256 788 l-22 34 M280 788 l22 34" fill="none"/>
+    <circle cx="228" cy="826" r="8" fill="#3A4443"/>
+    <circle cx="308" cy="826" r="8" fill="#3A4443"/>
+  </g>
+
+  <!-- 小林 seated, leaning forward -->
+  <g>
+    <!-- legs under desk -->
+    <path d="M300 700 q30 40 96 46" fill="none" stroke="#4A4E52" stroke-width="22" stroke-linecap="round"/>
+    <path d="M396 746 l44 6" stroke="#2E2F31" stroke-width="16" stroke-linecap="round"/>
+    <!-- torso leaning forward -->
+    <path d="M300 690 q-8 -60 24 -102 q30 -36 62 -18 q22 14 20 48 q-2 44 -14 78 q-46 14 -92 -6 z" fill="#EFE9DA" stroke="#38403C" stroke-width="4"/>
+    <!-- knit texture folds -->
+    <g stroke="#CFC7B0" stroke-width="2" fill="none">
+      <path d="M316 640 q24 14 54 10"/>
+      <path d="M312 664 q30 16 66 8"/>
+      <path d="M310 560 q30 -18 66 -6"/>
+    </g>
+    <!-- left arm reaching mouse -->
+    <path d="M372 600 q52 30 74 92" fill="none" stroke="#EFE9DA" stroke-width="20" stroke-linecap="round"/>
+    <path d="M372 600 q52 30 74 92" fill="none" stroke="#38403C" stroke-width="2" stroke-linecap="round" opacity="0"/>
+    <circle cx="448" cy="696" r="10" fill="#F2C9A8" stroke="#38403C" stroke-width="3"/>
+    <!-- right hand on printout -->
+    <path d="M318 616 q-38 26 -60 52" fill="none" stroke="#EFE9DA" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="256" cy="670" r="10" fill="#F2C9A8" stroke="#38403C" stroke-width="3"/>
+    <!-- neck & head -->
+    <rect x="330" y="540" width="26" height="26" fill="#F2C9A8" stroke="#38403C" stroke-width="3"/>
+    <path d="M312 500 q-4 -46 38 -50 q42 -2 42 40 q0 34 -18 44 q-30 14 -54 -2 q-10 -10 -8 -32 z" fill="#F2C9A8" stroke="#38403C" stroke-width="3.5"/>
+    <!-- hair: side-parted bob, dark brown, volume -->
+    <path d="M304 508 q-6 -66 46 -66 q52 2 50 60 q0 20 -6 34 q4 -26 -8 -44 q-30 12 -52 2 q-22 22 -22 52 q-8 -14 -8 -38 z" fill="#4A342A" stroke="#38403C" stroke-width="3"/>
+    <path d="M344 444 q40 -6 52 26" fill="none" stroke="#38403C" stroke-width="2.5"/>
+    <!-- glasses -->
+    <g fill="none" stroke="#38403C" stroke-width="2.5">
+      <rect x="318" y="496" width="30" height="20" rx="6"/>
+      <rect x="356" y="496" width="30" height="20" rx="6"/>
+      <line x1="348" y1="506" x2="356" y2="506"/>
+    </g>
+    <!-- focused brows + eyes -->
+    <line x1="322" y1="492" x2="342" y2="495" stroke="#38403C" stroke-width="3"/>
+    <line x1="360" y1="495" x2="380" y2="492" stroke="#38403C" stroke-width="3"/>
+    <circle cx="333" cy="507" r="3.5" fill="#38403C"/>
+    <circle cx="369" cy="507" r="3.5" fill="#38403C"/>
+    <!-- frowning mouth -->
+    <path d="M340 530 q12 4 24 0" fill="none" stroke="#38403C" stroke-width="3"/>
+    <!-- blush subtle -->
+    <ellipse cx="316" cy="518" rx="7" ry="4" fill="#E5A98C" opacity="0.5"/>
+    <ellipse cx="388" cy="518" rx="7" ry="4" fill="#E5A98C" opacity="0.5"/>
+  </g>
+
+  <!-- foreground: floor cable & paper stack edge -->
+  <path d="M120 960 q140 -30 260 6" fill="none" stroke="#38403C" stroke-width="5" opacity="0.5"/>
+  <g stroke="#38403C" stroke-width="2.5">
+    <rect x="60" y="880" width="110" height="26" rx="2" fill="#EDE8D8"/>
+    <rect x="70" y="866" width="110" height="26" rx="2" fill="#F4F1E6"/>
+  </g>
+  <!-- foreground vignette corners -->
+  <path d="M0 0 h800 v18 h-782 v982 h-18 z" fill="#38403C" opacity="0.85"/>
+</svg>

@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#141A2B"/><stop offset="1" stop-color="#0B0F18"/>
+</linearGradient>
+<linearGradient id="win" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#22314F"/><stop offset="1" stop-color="#141A2B"/>
+</linearGradient>
+<linearGradient id="skyGlow" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#2A3B63"/><stop offset="1" stop-color="#141A2B"/>
+</linearGradient>
+<linearGradient id="scr" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0E2A3A"/><stop offset="1" stop-color="#0B1626"/>
+</linearGradient>
+<linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#2BD9E8"/><stop offset="1" stop-color="#0B0F18" stop-opacity="0"/>
+</linearGradient>
+</defs>
+
+<rect width="800" height="1000" fill="url(#bg)"/>
+
+<!-- 背景层：落地窗与城市夜景 -->
+<g>
+<rect x="440" y="60" width="340" height="700" fill="url(#win)" stroke="#0B0F18" stroke-width="6"/>
+<rect x="440" y="60" width="340" height="700" fill="url(#skyGlow)" opacity="0.5"/>
+<!-- 城市轮廓 -->
+<g fill="#1B2540">
+<path d="M455 760V520h45v240zM510 760V430h55v330zM575 760V480h40v280zM625 760V380h50v380zM685 760V500h45v260z"/>
+</g>
+<g fill="#2BD9E8" opacity="0.55">
+<rect x="462" y="540" width="7" height="9"/><rect x="478" y="570" width="7" height="9"/>
+<rect x="520" y="450" width="7" height="9"/><rect x="545" y="490" width="7" height="9"/>
+<rect x="585" y="510" width="7" height="9"/><rect x="635" y="410" width="7" height="9"/>
+<rect x="660" y="470" width="7" height="9"/><rect x="695" y="530" width="7" height="9"/>
+</g>
+<rect x="440" y="60" width="340" height="700" fill="none" stroke="#0B0F18" stroke-width="6"/>
+<line x1="553" y1="60" x2="553" y2="760" stroke="#0B0F18" stroke-width="8"/>
+<line x1="667" y1="60" x2="667" y2="760" stroke="#0B0F18" stroke-width="8"/>
+<line x1="440" y1="420" x2="780" y2="420" stroke="#0B0F18" stroke-width="6"/>
+<!-- 窗外轮廓光进入 -->
+<polygon points="440,760 553,300 553,760" fill="#2BD9E8" opacity="0.05"/>
+</g>
+
+<!-- 背景家具：隔断、绿植、文件柜 -->
+<g>
+<rect x="60" y="430" width="240" height="260" fill="#1A2338" stroke="#0B0F18" stroke-width="5"/>
+<line x1="60" y1="515" x2="300" y2="515" stroke="#0B0F18" stroke-width="4"/>
+<line x1="60" y1="600" x2="300" y2="600" stroke="#0B0F18" stroke-width="4"/>
+<g fill="#2A3B63">
+<rect x="80" y="460" width="34" height="24"/><rect x="130" y="470" width="30" height="14"/>
+<rect x="185" y="455" width="26" height="30"/><rect x="90" y="550" width="40" height="22"/>
+<rect x="200" y="545" width="34" height="26"/><rect x="90" y="630" width="30" height="18"/>
+</g>
+<!-- 绿植 -->
+<path d="M380 760 L370 690 Q340 640 355 600 Q330 630 330 590 Q360 560 385 600 Q390 555 415 585 Q420 640 395 690 L400 760Z" fill="#1E4A3A" stroke="#0B0F18" stroke-width="4"/>
+<path d="M372 620 Q350 660 372 700 Q396 660 385 620Z" fill="#2A6B50" stroke="#0B0F18" stroke-width="3"/>
+<polygon points="360,760 420,760 410,700 370,700" fill="#22304F" stroke="#0B0F18" stroke-width="4"/>
+<!-- 远处空工位剪影 -->
+<g fill="#161E33" stroke="#0B0F18" stroke-width="3">
+<rect x="80" y="700" width="130" height="14"/>
+<rect x="95" y="714" width="10" height="66"/><rect x="185" y="714" width="10" height="66"/>
+</g>
+<rect x="105" y="655" width="52" height="40" fill="#131A2C" stroke="#0B0F18" stroke-width="3"/>
+</g>
+
+<!-- 地面 -->
+<rect x="0" y="760" width="800" height="240" fill="#111726"/>
+<polygon points="0,760 800,760 800,1000 0,1000" fill="none"/>
+<line x1="0" y1="760" x2="800" y2="760" stroke="#0B0F18" stroke-width="6"/>
+<g stroke="#1C2740" stroke-width="3">
+<line x1="0" y1="830" x2="800" y2="820"/><line x1="0" y1="910" x2="800" y2="905"/>
+<line x1="150" y1="1000" x2="230" y2="760"/><line x1="450" y1="1000" x2="480" y2="760"/><line x1="680" y1="1000" x2="690" y2="760"/>
+</g>
+
+<!-- 中景：主工位 -->
+<g>
+<polygon points="250,790 640,790 680,830 210,830" fill="#232C45" stroke="#0B0F18" stroke-width="6"/>
+<rect x="215" y="830" width="14" height="150" fill="#1B2338" stroke="#0B0F18" stroke-width="4"/>
+<rect x="660" y="830" width="14" height="150" fill="#1B2338" stroke="#0B0F18" stroke-width="4"/>
+<rect x="250" y="790" width="390" height="16" fill="#2B3A5E"/>
+<!-- 侧沿轮廓光 -->
+<polygon points="640,790 680,830 680,838 636,798" fill="#2BD9E8" opacity="0.35"/>
+
+<!-- 显示器（焦点） -->
+<g>
+<rect x="360" y="540" width="240" height="200" rx="8" fill="#0B0F18"/>
+<rect x="368" y="548" width="224" height="184" rx="5" fill="url(#scr)"/>
+<!-- 三份并排报价表 -->
+<g stroke="#0B0F18" stroke-width="2">
+<rect x="376" y="560" width="64" height="160" fill="#15374A"/>
+<rect x="448" y="560" width="64" height="160" fill="#15374A"/>
+<rect x="520" y="560" width="64" height="160" fill="#15374A"/>
+</g>
+<!-- 表格行（抽象无文字） -->
+<g fill="#2BD9E8" opacity="0.8">
+<rect x="382" y="570" width="52" height="8"/><rect x="382" y="588" width="40" height="6"/><rect x="382" y="602" width="46" height="6"/><rect x="382" y="616" width="36" height="6"/><rect x="382" y="630" width="44" height="6"/><rect x="382" y="644" width="38" height="6"/><rect x="382" y="680" width="48" height="10"/>
+<rect x="454" y="570" width="52" height="8"/><rect x="454" y="588" width="44" height="6"/><rect x="454" y="602" width="38" height="6"/><rect x="454" y="616" width="48" height="6"/><rect x="454" y="630" width="40" height="6"/><rect x="454" y="644" width="46" height="6"/><rect x="454" y="680" width="48" height="10"/>
+<rect x="526" y="570" width="52" height="8"/><rect x="526" y="588" width="36" height="6"/><rect x="526" y="602" width="48" height="6"/><rect x="526" y="616" width="40" height="6"/><rect x="526" y="630" width="44" height="6"/><rect x="526" y="644" width="38" height="6"/><rect x="526" y="680" width="48" height="10"/>
+</g>
+<!-- 第三张品红高亮 -->
+<rect x="518" y="558" width="68" height="164" fill="none" stroke="#F258A6" stroke-width="4"/>
+<!-- 屏幕光晕（克制） -->
+<rect x="360" y="540" width="240" height="200" fill="#2BD9E8" opacity="0.06"/>
+<rect x="352" y="742" width="60" height="12" fill="#1B2338" stroke="#0B0F18" stroke-width="3"/>
+<rect x="462" y="744" width="36" height="36" fill="#1B2338" stroke="#0B0F18" stroke-width="4"/>
+</g>
+
+<!-- 桌面道具：打印件、计算器、键盘、水杯 -->
+<g>
+<polygon points="262,778 348,766 354,786 268,798" fill="#E9EDF5" stroke="#0B0F18" stroke-width="3"/>
+<polygon points="272,776 340,767 344,782 276,791" fill="none" stroke="#8FA3C8" stroke-width="2"/>
+<g stroke="#8FA3C8" stroke-width="1.6">
+<line x1="280" y1="776" x2="336" y2="770"/><line x1="281" y1="780" x2="338" y2="774"/><line x1="282" y1="784" x2="330" y2="778"/>
+</g>
+<polygon points="560,778 636,770 640,786 564,794" fill="#E9EDF5" stroke="#0B0F18" stroke-width="3"/>
+<g stroke="#8FA3C8" stroke-width="1.6">
+<line x1="570" y1="778" x2="628" y2="772"/><line x1="571" y1="782" x2="630" y2="776"/>
+</g>
+<rect x="288" y="800" width="86" height="24" rx="4" fill="#1E2A44" stroke="#0B0F18" stroke-width="3"/>
+<g fill="#31415F">
+<rect x="294" y="806" width="12" height="5"/><rect x="310" y="806" width="12" height="5"/><rect x="326" y="806" width="12" height="5"/><rect x="342" y="806" width="12" height="5"/>
+<rect x="294" y="814" width="30" height="5"/><rect x="328" y="814" width="26" height="5"/>
+</g>
+<rect x="600" y="796" width="30" height="22" rx="3" fill="#242F4E" stroke="#0B0F18" stroke-width="3"/>
+<rect x="606" y="802" width="18" height="8" fill="#F258A6" opacity="0.8"/>
+<rect x="392" y="798" width="130" height="16" rx="4" fill="#1E2A44" stroke="#0B0F18" stroke-width="3"/>
+<g fill="#31415F">
+<rect x="398" y="802" width="10" height="8"/><rect x="412" y="802" width="10" height="8"/><rect x="426" y="802" width="10" height="8"/><rect x="440" y="802" width="10" height="8"/><rect x="454" y="802" width="10" height="8"/><rect x="468" y="802" width="10" height="8"/><rect x="482" y="802" width="10" height="8"/><rect x="496" y="802" width="10" height="8"/>
+</g>
+<path d="M540 792h20l-4 22h-12z" fill="#2A3B63" stroke="#0B0F18" stroke-width="3"/>
+</g>
+
+<!-- 鼠标 -->
+<ellipse cx="536" cy="812" rx="10" ry="7" fill="#2B3A5E" stroke="#0B0F18" stroke-width="3"/>
+<line x1="546" y1="812" x2="560" y2="808" stroke="#0B0F18" stroke-width="3"/>
+</g>
+
+<!-- 人物：小林（前倾坐姿） -->
+<g>
+<!-- 椅背 -->
+<rect x="150" y="600" width="26" height="190" rx="10" fill="#1B2338" stroke="#0B0F18" stroke-width="5"/>
+<rect x="128" y="790" width="80" height="14" fill="#1B2338" stroke="#0B0F18" stroke-width="4"/>
+<line x1="168" y1="804" x2="168" y2="850" stroke="#0B0F18" stroke-width="6"/>
+<polygon points="130,860 206,860 190,838 146,838" fill="#1B2338" stroke="#0B0F18" stroke-width="4"/>
+
+<!-- 腿（深灰西装裤，向桌下延伸） -->
+<path d="M228 720 Q262 726 290 764 Q312 796 330 812 L322 826 Q290 812 262 786 Q236 760 216 748Z" fill="#3A4256" stroke="#0B0F18" stroke-width="5"/>
+<path d="M224 742 Q256 754 282 788 Q304 816 320 830 L308 842 Q282 830 258 804 Q234 778 212 766Z" fill="#454E66" stroke="#0B0F18" stroke-width="5"/>
+<path d="M318 824 L344 822 L348 838 L322 840Z" fill="#141A2B" stroke="#0B0F18" stroke-width="4"/>
+<path d="M306 838 L332 836 L336 852 L310 854Z" fill="#141A2B" stroke="#0B0F18" stroke-width="4"/>
+
+<!-- 躯干（米白针织衫，前倾） -->
+<path d="M176 610 Q214 588 248 606 Q272 620 276 668 Q280 700 268 724 L214 742 Q196 706 186 668 Q176 632 176 610Z" fill="#EDE6D6" stroke="#0B0F18" stroke-width="5"/>
+<!-- 衣褶 -->
+<g stroke="#C9BFA6" stroke-width="2.5" fill="none">
+<path d="M232 614 Q244 640 240 690"/>
+<path d="M250 622 Q262 650 256 700"/>
+<path d="M212 622 Q206 650 210 690"/>
+</g>
+<!-- 轮廓光 -->
+<path d="M248 606 Q272 620 276 668 Q279 698 268 724" fill="none" stroke="#2BD9E8" stroke-width="3.5" opacity="0.7"/>
+
+<!-- 手臂：左手扶打印件（伸向左前下方） -->
+<path d="M188 626 Q168 664 200 702 Q224 728 268 736 L276 722 Q236 712 216 690 Q194 664 206 632Z" fill="#EDE6D6" stroke="#0B0F18" stroke-width="5"/>
+<path d="M270 734 Q266 748 252 750 Q242 752 240 744 Q248 738 252 728Z" fill="#F2C9A8" stroke="#0B0F18" stroke-width="4"/>
+<g stroke="#0B0F18" stroke-width="2.5" fill="none">
+<path d="M244 748 L238 756"/><path d="M252 750 L248 760"/>
+</g>
+
+<!-- 手臂：右手握鼠标 -->
+<path d="M258 632 Q292 664 320 706 Q344 742 386 772 Q404 786 418 796 L408 812 Q384 804 356 788 Q314 762 288 720 Q266 682 246 654Z" fill="#EDE6D6" stroke="#0B0F18" stroke-width="5"/>
+<g stroke="#C9BFA6" stroke-width="2.5" fill="none">
+<path d="M300 700 Q314 726 336 748"/>
+<path d="M336 736 Q354 756 372 768"/>
+</g>
+<!-- 手在鼠标上 -->
+<path d="M412 788 Q428 790 434 802 Q436 812 424 814 Q410 814 402 804 Q400 794 412 788Z" fill="#F2C9A8" stroke="#0B0F18" stroke-width="4"/>
+<ellipse cx="536" cy="812" rx="10" ry="7" fill="#2B3A5E" stroke="#0B0F18" stroke-width="3"/>
+<g stroke="#0B0F18" stroke-width="2.5" fill="none">
+<path d="M414 812 Q420 818 430 816"/><path d="M424 814 Q430 818 438 814"/>
+</g>
+
+<!-- 头部（前倾低头） -->
+<g>
+<ellipse cx="196" cy="556" rx="40" ry="45" fill="#F2C9A8" stroke="#0B0F18" stroke-width="5"/>
+<!-- 颈部 -->
+<path d="M186 592 L218 600 L216 620 L188 612Z" fill="#F2C9A8" stroke="#0B0F18" stroke-width="4"/>
+<!-- 深棕齐肩短发，侧分，低头时发丝覆盖额顶 -->
+<path d="M158 546 Q160 508 200 502 Q240 504 244 542 Q248 560 240 574 Q246 540 228 526 Q210 518 190 526 Q172 536 168 560 Q162 574 158 546Z" fill="#4A3526" stroke="#0B0F18" stroke-width="5"/>
+<path d="M158 546 Q150 586 158 606 Q164 588 164 562Z" fill="#4A3526" stroke="#0B0F18" stroke-width="4"/>
+<path d="M240 560 Q248 592 242 608 Q236 588 236 566Z" fill="#3E2B1E" stroke="#0B0F18" stroke-width="4"/>
+<path d="M164 562 Q170 552 184 550 L190 556 Q172 560 166 574Z" fill="#3E2B1E" stroke="#0B0F18" stroke-width="3"/>
+<!-- 发丝轮廓光 -->
+<path d="M240 542 Q246 558 240 572" fill="none" stroke="#F2C9A8" stroke-width="2.5" opacity="0.6"/>
+<!-- 细框眼镜 -->
+<g fill="none" stroke="#0B0F18" stroke-width="2.5">
+<ellipse cx="180" cy="556" rx="13" ry="10"/>
+<ellipse cx="212" cy="560" rx="13" ry="10"/>
+<line x1="193" y1="556" x2="199" y2="558"/>
+<path d="M167 554 L160 550"/><path d="M225 558 L232 554"/>
+</g>
+<ellipse cx="180" cy="556" rx="13" ry="10" fill="#2BD9E8" opacity="0.12"/>
+<ellipse cx="212" cy="560" rx="13" ry="10" fill="#2BD9E8" opacity="0.12"/>
+<!-- 眉（微皱，专注） -->
+<g stroke="#3E2B1E" stroke-width="4" fill="none" stroke-linecap="round">
+<path d="M170 542 Q180 536 190 540"/>
+<path d="M202 545 Q212 540 222 545"/>
+</g>
+<!-- 眼（低垂专注） -->
+<g fill="#0B0F18">
+<ellipse cx="181" cy="560" rx="3.2" ry="4"/>
+<ellipse cx="212" cy="564" rx="3.2" ry="4"/>
+</g>
+<!-- 鼻与嘴 -->
+<path d="M196 566 Q199 574 195 578" fill="none" stroke="#D9A87E" stroke-width="3"/>
+<path d="M188 586 Q195 589 203 585" fill="none" stroke="#B5765A" stroke-width="3"/>
+<!-- 屏幕在脸部的青色反光 -->
+<ellipse cx="206" cy="566" rx="26" ry="20" fill="#2BD9E8" opacity="0.08"/>
+</g>
+</g>
+
+<!-- 前景层：窗框柱与虚化桌面边缘 -->
+<rect x="0" y="0" width="46" height="1000" fill="#0D1220"/>
+<line x1="46" y1="0" x2="46" y2="1000" stroke="#1C2740" stroke-width="4"/>
+<polygon points="0,1000 800,1000 800,968 0,976" fill="#0B0F18" opacity="0.55"/>
+<polygon points="0,0 800,0 800,26 0,20" fill="#0B0F18" opacity="0.5"/>
+<!-- 焦点引导：屏幕发光散射 -->
+<ellipse cx="480" cy="640" rx="180" ry="120" fill="#2BD9E8" opacity="0.04"/>
+</svg>

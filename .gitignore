@@ -1,0 +1,25 @@
+# 依赖
+node_modules/
+.pnpm-store/
+
+# 构建产物
+dist/
+.tmp/
+
+# 本地环境变量 / 密钥
+.env
+.env.local
+.env*.local
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 临时备份
+.apptest-backup/
+
+# 日志
+*.log
+npm-debug.log*

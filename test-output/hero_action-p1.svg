@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F6E9C8"/><stop offset="1" stop-color="#EAD9B8"/>
+</linearGradient>
+<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#C9BBA0"/><stop offset="1" stop-color="#A99A7E"/>
+</linearGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.4" r="0.7">
+<stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#9FBEE8"/>
+</radialGradient>
+<clipPath id="winClip"><rect x="560" y="70" width="200" height="420" rx="6"/></clipPath>
+<clipPath id="scrClip"><rect x="392" y="352" width="252" height="168" rx="8"/></clipPath>
+</defs>
+
+<rect x="0" y="0" width="800" height="1000" fill="url(#sky)"/>
+
+<!-- background: window + city + far desks -->
+<g>
+<rect x="548" y="58" width="224" height="444" rx="10" fill="#8A7C63"/>
+<g clip-path="url(#winClip)">
+<rect x="560" y="70" width="200" height="420" fill="url(#sky)"/>
+<circle cx="700" cy="140" r="38" fill="#F5D878"/>
+<g fill="#5E6E8C" opacity="0.85">
+<rect x="565" y="290" width="34" height="200"/><rect x="606" y="250" width="28" height="240"/>
+<rect x="642" y="310" width="40" height="180"/><rect x="690" y="270" width="30" height="220"/>
+<rect x="726" y="330" width="30" height="160"/>
+</g>
+<g fill="#3E4C66" opacity="0.5">
+<rect x="571" y="300" width="6" height="8"/><rect x="583" y="316" width="6" height="8"/>
+<rect x="612" y="264" width="5" height="7"/><rect x="624" y="286" width="5" height="7"/>
+<rect x="648" y="322" width="6" height="8"/><rect x="700" y="284" width="5" height="7"/>
+<rect x="732" y="344" width="6" height="8"/>
+</g>
+<line x1="660" y1="70" x2="660" y2="490" stroke="#8A7C63" stroke-width="10"/>
+<line x1="560" y1="280" x2="760" y2="280" stroke="#8A7C63" stroke-width="8"/>
+</g>
+<!-- far desks simplified -->
+<g opacity="0.75">
+<rect x="40" y="560" width="240" height="20" rx="4" fill="#7A6C55"/>
+<rect x="56" y="580" width="14" height="110" fill="#6B5E49"/><rect x="250" y="580" width="14" height="110" fill="#6B5E49"/>
+<rect x="90" y="522" width="90" height="40" rx="5" fill="#4C5A73"/>
+<rect x="300" y="548" width="180" height="18" rx="4" fill="#7A6C55"/>
+<rect x="312" y="566" width="12" height="96" fill="#6B5E49"/><rect x="456" y="566" width="12" height="96" fill="#6B5E49"/>
+<ellipse cx="500" cy="530" rx="34" ry="26" fill="#4E7A46"/>
+<rect x="494" y="550" width="10" height="46" fill="#6B5238"/>
+</g>
+</g>
+
+<!-- floor -->
+<rect x="0" y="690" width="800" height="310" fill="url(#floor)"/>
+<path d="M0 690 H800 V710 H0 Z" fill="#8F8268"/>
+<g stroke="#9C8F73" stroke-width="3" opacity="0.6">
+<line x1="80" y1="1000" x2="180" y2="690"/><line x1="320" y1="1000" x2="360" y2="690"/>
+<line x1="560" y1="1000" x2="540" y2="690"/><line x1="740" y1="1000" x2="680" y2="690"/>
+</g>
+
+<!-- desk -->
+<g>
+<rect x="180" y="620" width="480" height="26" rx="5" fill="#B99A6E" stroke="#1C1C22" stroke-width="3"/>
+<rect x="196" y="646" width="20" height="240" fill="#8F734C" stroke="#1C1C22" stroke-width="3"/>
+<rect x="624" y="646" width="20" height="240" fill="#8F734C" stroke="#1C1C22" stroke-width="3"/>
+<rect x="560" y="646" width="90" height="140" fill="#A3835A" stroke="#1C1C22" stroke-width="3"/>
+<circle cx="605" cy="700" r="7" fill="#E8C364" stroke="#1C1C22" stroke-width="2.5"/>
+<circle cx="605" cy="755" r="7" fill="#E8C364" stroke="#1C1C22" stroke-width="2.5"/>
+<!-- desk shadow -->
+<ellipse cx="420" cy="892" rx="260" ry="26" fill="#7A6E58" opacity="0.35"/>
+</g>
+
+<!-- window light shaft -->
+<polygon points="548,500 360,1000 560,1000 700,500" fill="#FFF4D6" opacity="0.28"/>
+
+<!-- printed sheets on desk (middle ground, secondary props) -->
+<g>
+<rect x="196" y="600" width="120" height="26" rx="2" fill="#FCF6E6" stroke="#1C1C22" stroke-width="2.5" transform="rotate(-6 256 613)"/>
+<g stroke="#8FA6C6" stroke-width="3" transform="rotate(-6 256 613)">
+<line x1="212" y1="607" x2="300" y2="607"/><line x1="212" y1="614" x2="288" y2="614"/>
+</g>
+<rect x="216" y="612" width="110" height="24" rx="2" fill="#F6EEDC" stroke="#1C1C22" stroke-width="2.5" transform="rotate(4 271 624)"/>
+<g stroke="#C9A46A" stroke-width="3" transform="rotate(4 271 624)">
+<line x1="230" y1="619" x2="310" y2="619"/><line x1="230" y1="626" x2="296" y2="626"/>
+</g>
+<!-- calculator -->
+<rect x="556" y="590" width="74" height="34" rx="5" fill="#3A3A42" stroke="#1C1C22" stroke-width="2.5" transform="rotate(-4 593 607)"/>
+<g fill="#E8C364" transform="rotate(-4 593 607)">
+<rect x="564" y="596" width="10" height="8"/><rect x="578" y="596" width="10" height="8"/><rect x="592" y="596" width="10" height="8"/><rect x="606" y="596" width="10" height="8"/>
+<rect x="564" y="608" width="10" height="8"/><rect x="578" y="608" width="10" height="8"/><rect x="592" y="608" width="10" height="8"/><rect x="606" y="608" width="12" height="8"/>
+</g>
+<!-- coffee mug -->
+<rect x="524" y="598" width="26" height="26" rx="4" fill="#2C5FB3" stroke="#1C1C22" stroke-width="2.5"/>
+<path d="M550 604 q12 2 0 14" fill="none" stroke="#1C1C22" stroke-width="2.5"/>
+</g>
+
+<!-- monitor with three quotation sheets (FOCUS) -->
+<g>
+<rect x="382" y="342" width="272" height="188" rx="10" fill="#26262C" stroke="#1C1C22" stroke-width="4"/>
+<rect x="392" y="352" width="252" height="168" rx="6" fill="url(#screenGlow)"/>
+<rect x="492" y="530" width="52" height="26" fill="#3A3A42" stroke="#1C1C22" stroke-width="3"/>
+<rect x="466" y="554" width="104" height="14" rx="6" fill="#3A3A42" stroke="#1C1C22" stroke-width="3"/>
+<g clip-path="url(#scrClip)">
+<!-- three side-by-side spreadsheet panels -->
+<g>
+<rect x="400" y="364" width="70" height="140" rx="3" fill="#FFFFFF" stroke="#2C5FB3" stroke-width="2.5"/>
+<rect x="400" y="364" width="70" height="16" fill="#2C5FB3"/>
+<g stroke="#A9BEDC" stroke-width="2">
+<line x1="400" y1="394" x2="470" y2="394"/><line x1="400" y1="412" x2="470" y2="412"/>
+<line x1="400" y1="430" x2="470" y2="430"/><line x1="400" y1="448" x2="470" y2="448"/>
+<line x1="400" y1="466" x2="470" y2="466"/><line x1="400" y1="484" x2="470" y2="484"/>
+<line x1="424" y1="380" x2="424" y2="504"/><line x1="448" y1="380" x2="448" y2="504"/>
+</g>
+</g>
+<g>
+<rect x="482" y="364" width="70" height="140" rx="3" fill="#FFFFFF" stroke="#B0392F" stroke-width="2.5"/>
+<rect x="482" y="364" width="70" height="16" fill="#B0392F"/>
+<g stroke="#D8A9A2" stroke-width="2">
+<line x1="482" y1="394" x2="552" y2="394"/><line x1="482" y1="412" x2="552" y2="412"/>
+<line x1="482" y1="430" x2="552" y2="430"/><line x1="482" y1="448" x2="552" y2="448"/>
+<line x1="482" y1="466" x2="552" y2="466"/><line x1="482" y1="484" x2="552" y2="484"/>
+<line x1="506" y1="380" x2="506" y2="504"/><line x1="530" y1="380" x2="530" y2="504"/>
+</g>
+</g>
+<g>
+<rect x="564" y="364" width="70" height="140" rx="3" fill="#FFFFFF" stroke="#C99A2E" stroke-width="2.5"/>
+<rect x="564" y="364" width="70" height="16" fill="#C99A2E"/>
+<g stroke="#D9C48F" stroke-width="2">
+<line x1="564" y1="394" x2="634" y2="394"/><line x1="564" y1="412" x2="634" y2="412"/>
+<line x1="564" y1="430" x2="634" y2="430"/><line x1="564" y1="448" x2="634" y2="448"/>
+<line x1="564" y1="466" x2="634" y2="466"/><line x1="564" y1="484" x2="634" y2="484"/>
+<line x1="588" y1="380" x2="588" y2="504"/><line x1="612" y1="380" x2="612" y2="504"/>
+</g>
+</g>
+<!-- cursor + focus ring on middle panel -->
+<rect x="478" y="440" width="78" height="26" fill="none" stroke="#1C1C22" stroke-width="2.5"/>
+<path d="M536 462 l7 14 4 -5 6 3 3 -6 -14 -6 Z" fill="#1C1C22"/>
+</g>
+<!-- screen edge light -->
+<path d="M382 342 h272 v10 h-272 Z" fill="#FFF4D6" opacity="0.4"/>
+</g>
+
+<!-- xiaolin (focus subject, leaning forward at desk) -->
+<g stroke="#1C1C22" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+<!-- chair -->
+<rect x="318" y="640" width="86" height="120" rx="10" fill="#3E4C66"/>
+<rect x="308" y="560" width="106" height="90" rx="14" fill="#2C5FB3"/>
+<rect x="352" y="760" width="16" height="70" fill="#3A3A42"/>
+<path d="M360 828 l-46 34 M360 828 l46 34 M360 828 v44" stroke-width="9" fill="none"/>
+<!-- legs / trousers -->
+<path d="M348 700 q-6 60 4 108 q2 14 -8 30 h-32 q6 -20 6 -34 q-2 -52 6 -104 Z" fill="#4A4A52"/>
+<path d="M392 700 q14 56 10 104 q0 14 10 32 h30 q-8 -22 -10 -34 q-2 -50 -16 -102 Z" fill="#4A4A52"/>
+<path d="M312 838 h36 l6 12 h-40 Z" fill="#26262C"/>
+<path d="M402 836 h38 l-2 12 h-40 Z" fill="#26262C"/>
+<!-- torso, leaning forward toward screen -->
+<path d="M352 560 q-14 -10 -8 -46 q6 -40 44 -46 q40 -6 54 28 q10 26 6 62 l-6 46 q-40 12 -78 2 Z" fill="#F5EFDF"/>
+<!-- knit folds -->
+<path d="M370 500 q4 30 -2 60 M398 480 q6 34 0 74 M424 496 q8 26 4 56" fill="none" stroke="#D8CDB4" stroke-width="2.5"/>
+<!-- arms: left hand on printout, right hand on mouse -->
+<path d="M350 508 q-24 22 -34 58 q-4 14 4 22 l20 8 q6 -34 22 -60 Z" fill="#F5EFDF"/>
+<circle cx="322" cy="596" r="13" fill="#F2C9A8"/>
+<path d="M312 592 l-14 6 M312 600 l-14 8 M314 606 l-10 10" stroke-width="3" fill="none"/>
+<path d="M438 514 q30 24 40 62 q4 16 -6 20 l-20 2 q-8 -34 -26 -56 Z" fill="#F5EFDF"/>
+<circle cx="452" cy="602" r="13" fill="#F2C9A8"/>
+<!-- mouse -->
+<ellipse cx="466" cy="610" rx="14" ry="10" fill="#3A3A42"/>
+<!-- head -->
+<path d="M368 448 q-4 -34 24 -44 q30 -10 42 14 q8 18 2 40 q-4 18 -20 26 q-22 10 -38 -4 q-10 -10 -10 -32 Z" fill="#F2C9A8"/>
+<!-- hair: side-parted bob, dark brown -->
+<path d="M362 448 q-6 -52 38 -56 q46 -4 46 44 q0 8 -4 16 q-2 -10 -10 -12 q4 -16 -8 -22 q-4 8 -14 8 q-22 2 -30 18 q-6 10 -6 22 q-8 -4 -12 -18 Z" fill="#4A3324"/>
+<path d="M356 448 q-6 22 2 42 q6 12 14 10 q-10 -16 -8 -34 Z" fill="#4A3324"/>
+<path d="M446 452 q6 24 -2 44 q-6 12 -14 12 q12 -18 8 -38 Z" fill="#4A3324"/>
+<!-- glasses -->
+<circle cx="384" cy="452" r="12" fill="#FFFFFF" fill-opacity="0.35" stroke-width="2.5"/>
+<circle cx="414" cy="452" r="12" fill="#FFFFFF" fill-opacity="0.35" stroke-width="2.5"/>
+<line x1="396" y1="452" x2="402" y2="452" stroke-width="2.5"/>
+<!-- face: focused, brow furrowed -->
+<path d="M378 444 l10 4 M420 444 l-10 4" stroke-width="3" fill="none"/>
+<circle cx="384" cy="452" r="2.6" fill="#1C1C22" stroke="none"/>
+<circle cx="414" cy="452" r="2.6" fill="#1C1C22" stroke="none"/>
+<path d="M392 472 q8 4 16 0" stroke-width="3" fill="none"/>
+<path d="M370 462 q-4 4 -2 8" stroke-width="2.5" fill="none"/>
+<!-- edge light from window -->
+<path d="M440 476 q10 -10 8 -34 l6 6 q4 24 -8 38 Z" fill="#FFF4D6" stroke="none" opacity="0.7"/>
+</g>
+
+<!-- foreground: plant leaf + stacked folders framing bottom -->
+<g>
+<path d="M40 1000 q-6 -120 40 -170 q10 60 -8 170 Z" fill="#3E6B3A" stroke="#1C1C22" stroke-width="3.5"/>
+<path d="M78 1000 q0 -90 44 -130 q2 62 -18 130 Z" fill="#4E7A46" stroke="#1C1C22" stroke-width="3.5"/>
+<path d="M4 1000 q-4 -80 26 -116 q8 48 -6 116 Z" fill="#35592F" stroke="#1C1C22" stroke-width="3.5"/>
+<path d="M46 860 q14 40 10 100 M96 892 q6 34 -2 84" stroke="#2A4A28" stroke-width="3" fill="none"/>
+<g>
+<rect x="700" y="930" width="130" height="34" rx="4" fill="#2C5FB3" stroke="#1C1C22" stroke-width="3" transform="rotate(-8 765 947)"/>
+<rect x="712" y="952" width="130" height="34" rx="4" fill="#B0392F" stroke="#1C1C22" stroke-width="3" transform="rotate(-4 777 969)"/>
+<rect x="726" y="972" width="130" height="34" rx="4" fill="#E8C364" stroke="#1C1C22" stroke-width="3" transform="rotate(2 791 989)"/>
+</g>
+</g>
+
+<!-- vignette for focus -->
+<radialGradient id="vig" cx="0.5" cy="0.45" r="0.85">
+<stop offset="0.62" stop-color="#1C1C22" stop-opacity="0"/><stop offset="1" stop-color="#1C1C22" stop-opacity="0.28"/>
+</radialGradient>
+<rect x="0" y="0" width="800" height="1000" fill="url(#vig)"/>
+</svg>
