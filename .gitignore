@@ -26,6 +26,9 @@ public/icon-180.png
 public/icon-192.png
 public/icon-512.png
 
+# 测试产物（scripts/style-test.ts / story-test.ts 生成的 SVG 与对比页）
+test-output/
+
 # 日志
 *.log
 npm-debug.log*
