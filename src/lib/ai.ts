@@ -5,12 +5,15 @@ import {
   GENRE_MAP,
   TONE_MAP,
   SHOT_MAP,
+  bibleOf,
   buildArtDirection,
+  buildCharacterBible,
   composePanelPrompt,
   shotOf,
   shotPlan,
   type ArtDirection,
   type ArtStyle,
+  type CharacterBible,
   type Shot,
 } from './art'
 import { sanitizeSvg } from './img'
@@ -195,6 +198,8 @@ const SYS_STORY = [
   '11. 禁止连续两格使用相同的构图、相同的景别和相同的正面站立姿势。',
   '12. 背景必须来自真实工作场景（办公室、工位、电脑、报价表、文件、会议桌、窗、灯光、绿植等），不得出现与工作无关的奇幻、科幻或战斗场面。',
   '13. 不得虚构结果：不得写供应商已接受报价、项目已签约、预算已节省等日志里没有的进展。',
+  '14. 主角的性别、年龄感与外貌严格采用下面给定的主角形象，不得自行推断、改写或在各格之间改变；未填写的维度必须保持中性、不指定。',
+  '15. 主角职业只用于挑选与之相称的场景、道具、服装和动作，不得据此编造该职业的成果、客户、金额或进展。',
 ].join('\n')
 
 export async function writeStory(input: {
@@ -219,7 +224,8 @@ export async function writeStory(input: {
     `【语气】${t ? t.name + '：' + t.prompt : '冷静纪实'}`,
     `【画风】${input.style.name}：${input.style.prompt}`,
     `【镜头节奏偏好】${input.style.camera}`,
-    `【主角形象】姓名/称呼：${input.hero.name}；性别：${input.hero.gender}；发型：${input.hero.hair}；服装：${input.hero.outfit}；特征：${input.hero.features}`,
+    `【主角形象】姓名/称呼：${input.hero.name}；性别：${input.hero.gender || '不限'}；年龄感：${input.hero.age || '不限'}；发型：${input.hero.hair}；服装：${input.hero.outfit}；眼镜：${input.hero.glasses || '不指定'}；外貌特征：${input.hero.features}；气质：${input.hero.vibe || '不限'}；职业：${input.hero.job || '未填写'}`,
+    `【形象一致性】上面没填的维度一律保持中性、不指定，不要替用户推断；已填的维度在全部格子里必须完全一致。`,
     `【格数】必须恰好 ${input.length} 格`,
     '【指定景别（按顺序，必须严格遵守）】',
     ...shotPlan(input.length).map((s, i) => `第 ${i + 1} 格：${s.name}（${s.en}）——${s.hint}`),
@@ -302,6 +308,8 @@ export async function drawPanel(input: {
   refUrl?: string
   /** 本篇漫画固定的艺术指导，所有分镜共享 */
   ad?: ArtDirection
+  /** 本篇漫画固定的角色视觉圣经，所有分镜共享，保证跨格同一个人 */
+  bible?: CharacterBible
   /** 本格景别，缺省时按格序推导 */
   shot?: Shot
   /** 分镜总数，用于推导景别 */
@@ -368,6 +376,7 @@ export function buildPanelMessages(input: {
   hero: Hero
   genre?: string
   ad?: ArtDirection
+  bible?: CharacterBible
   shot?: Shot
   total?: number
   index?: number
@@ -389,6 +398,10 @@ export function buildPanelMessages(input: {
       outfit: hero.outfit,
       features: hero.features,
       skin: hero.skin || '#F2C9A8',
+      age: hero.age || '',
+      glasses: hero.glasses || '',
+      job: hero.job || '',
+      vibe: hero.vibe || '',
     },
     panel: {
       shot,
@@ -402,6 +415,7 @@ export function buildPanelMessages(input: {
       dialogue: panel.dialogue,
     },
     genrePrompt: input.genrePrompt || '',
+    bible: input.bible || bibleOf(hero, 'default'),
   })
 
   return { system: SYS_ART, user }
@@ -447,9 +461,10 @@ export async function drawPanels(
   signal: AbortSignal | undefined,
   onDone: (index: number, svg: string, failed?: string) => void,
   concurrency = 3,
-  opts?: { refUrl?: string; ad?: ArtDirection; genrePrompt?: string },
+  opts?: { refUrl?: string; ad?: ArtDirection; genrePrompt?: string; bible?: CharacterBible },
 ) {
   const ad = opts?.ad || buildArtDirection(style, 'default')
+  const bible = opts?.bible || bibleOf(hero, 'default')
   const total = panels.length
   let cursor = 0
   const worker = async () => {
@@ -466,6 +481,7 @@ export async function drawPanels(
           signal,
           refUrl: opts?.refUrl,
           ad,
+          bible,
           shot: SHOT_MAP[panels[i].shot] || shotOf(total, i),
           total,
           index: i,

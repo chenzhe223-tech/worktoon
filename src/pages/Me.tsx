@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useStore } from '../lib/store'
 import { Icon, Sheet, Confirm } from '../components/ui'
-import { ART_STYLES, GENRES, LENGTHS, TONES, thumbOf, ART_STYLE_MAP } from '../lib/art'
+import { ART_STYLES, GENRES, LENGTHS, TONES, thumbOf, ART_STYLE_MAP, JOBS, AGES, GLASSES, VIBES, GENDERS } from '../lib/art'
 import { cloud, errText, getSession } from '../lib/cloud'
 import * as DB from '../lib/data'
 import { getSignedUrl, clearUrlCache, uploadPng } from '../lib/img'
 import { downloadBlobFile } from '../lib/export'
 import type { Hero } from '../lib/types'
 
-const GENDERS = ['不限', '男', '女', '中性']
+const JOB_NAMES = JOBS.map((j) => j.name)
 const SKINS = [
   { v: '#F2C9A8', n: '浅肤色' },
   { v: '#E8B48C', n: '自然肤色' },
@@ -80,6 +80,8 @@ export default function Me({ go }: { go: (h: string) => void }) {
   })()
 
   const styleObj = ART_STYLE_MAP[profile.default_style]
+  /** 预设职业以外的自由填写值：填了就以它为准 */
+  const customJob = hero.job && !JOB_NAMES.includes(hero.job) ? hero.job : ''
 
   const saveHero = async (next?: Hero) => {
     const h = next || hero
@@ -124,6 +126,21 @@ export default function Me({ go }: { go: (h: string) => void }) {
     } finally {
       setUploading(false)
       if (fileRef.current) fileRef.current.value = ''
+    }
+  }
+
+  /** 清空主角档案：回到出厂默认，并一并删掉已上传的参考图 */
+  const resetHeroAll = async () => {
+    const old = hero.ref_path
+    try {
+      await saveHero({ ...DB.DEFAULT_HERO })
+      if (old) {
+        cloud.storage.remove([old]).catch(() => {})
+        clearUrlCache(old)
+      }
+      setRefUrl('')
+    } catch {
+      /* 已在 saveHero 中提示 */
     }
   }
 
@@ -403,6 +420,46 @@ export default function Me({ go }: { go: (h: string) => void }) {
           </div>
         </div>
 
+        <div>
+          <div className="label">职业</div>
+          <div className="hint" style={{ marginTop: 4, marginBottom: 6 }}>
+            用于匹配画面里的场景、道具、服装与动作；不会据此编造成果
+          </div>
+          <div className="chips" style={{ marginTop: 6 }}>
+            <button className={`chip ${!hero.job ? 'on' : ''}`} onClick={() => setHero({ ...hero, job: '' })}>
+              未填写
+            </button>
+            {JOBS.map((j) => (
+              <button
+                key={j.id}
+                className={`chip ${hero.job === j.name ? 'on' : ''}`}
+                onClick={() => setHero({ ...hero, job: j.name })}
+              >
+                {j.name}
+              </button>
+            ))}
+          </div>
+          <input
+            className="input"
+            style={{ marginTop: 8 }}
+            value={customJob}
+            maxLength={20}
+            placeholder="上面没有？直接输入你的职业"
+            onChange={(e) => setHero({ ...hero, job: e.target.value })}
+          />
+        </div>
+
+        <div>
+          <div className="label">年龄感</div>
+          <div className="chips" style={{ marginTop: 8 }}>
+            {AGES.map((a) => (
+              <button key={a} className={`chip ${(hero.age || '不限') === a ? 'on' : ''}`} onClick={() => setHero({ ...hero, age: a })}>
+                {a}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="field">
           <div className="label">发型</div>
           <input
@@ -425,15 +482,37 @@ export default function Me({ go }: { go: (h: string) => void }) {
           />
         </div>
 
+        <div>
+          <div className="label">眼镜</div>
+          <div className="chips" style={{ marginTop: 8 }}>
+            {GLASSES.map((g) => (
+              <button key={g} className={`chip ${(hero.glasses || '不戴') === g ? 'on' : ''}`} onClick={() => setHero({ ...hero, glasses: g })}>
+                {g}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="field">
           <div className="label">外貌特征</div>
           <input
             className="input"
             value={hero.features}
             maxLength={40}
-            placeholder="例如：戴细框眼镜，表情认真"
+            placeholder="例如：表情认真，身形偏瘦"
             onChange={(e) => setHero({ ...hero, features: e.target.value })}
           />
+        </div>
+
+        <div>
+          <div className="label">气质</div>
+          <div className="chips" style={{ marginTop: 8 }}>
+            {VIBES.map((v) => (
+              <button key={v} className={`chip ${(hero.vibe || '不限') === v ? 'on' : ''}`} onClick={() => setHero({ ...hero, vibe: v })}>
+                {v}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div>
@@ -461,6 +540,15 @@ export default function Me({ go }: { go: (h: string) => void }) {
         <button className="btn btn-primary btn-block" onClick={() => saveHero()} disabled={saving}>
           {saving ? <span className="spin" /> : <Icon.Check style={{ width: 18, height: 18 }} />}
           保存主角设定
+        </button>
+        <button
+          className="btn btn-ghost btn-block"
+          onClick={resetHeroAll}
+          disabled={saving}
+          style={{ color: 'var(--danger)' }}
+        >
+          <Icon.Trash style={{ width: 16, height: 16 }} />
+          重置主角档案（清空全部设定与参考图）
         </button>
       </div>
 

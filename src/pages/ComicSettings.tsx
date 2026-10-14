@@ -1,13 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { useStore } from '../lib/store'
 import { Icon, Sheet } from '../components/ui'
-import { ART_STYLES, GENRES, LENGTHS, TONES, thumbOf, ART_STYLE_MAP } from '../lib/art'
+import {
+  ART_STYLES,
+  GENRES,
+  LENGTHS,
+  TONES,
+  thumbOf,
+  ART_STYLE_MAP,
+  JOBS,
+  GENDERS,
+  AGES,
+  GLASSES,
+  VIBES,
+} from '../lib/art'
 import { loadDraft, saveDraft, clearDraft, type Draft } from '../lib/draft'
 import * as DB from '../lib/data'
 import * as GEN from '../lib/generate'
 import { errText } from '../lib/cloud'
+import type { Hero } from '../lib/types'
 
 type Sel = { style: string; genre: string; length: number; tone: string }
+
+const JOB_NAMES = JOBS.map((j) => j.name)
+
+/** 一行摘要：把主角档案压缩成肉眼可核对的一句话 */
+function heroLine(h: Hero) {
+  return [
+    h.name || '我',
+    h.gender || '不限',
+    h.job || '职业未填写',
+    h.age && h.age !== '不限' ? h.age : '',
+    h.glasses && h.glasses !== '不戴' ? h.glasses : '',
+    h.vibe && h.vibe !== '不限' ? h.vibe : '',
+  ]
+    .filter(Boolean)
+    .join(' · ')
+}
 
 export default function ComicSettings({ go }: { go: (h: string) => void }) {
   const { toast, profile, refreshComics, patchProfile } = useStore()
@@ -20,6 +49,14 @@ export default function ComicSettings({ go }: { go: (h: string) => void }) {
   }))
   const [sheet, setSheet] = useState<null | 'style' | 'genre' | 'length' | 'tone'>(null)
   const [busy, setBusy] = useState(false)
+  /** 本次生成使用的主角设定：以「我的」里的档案为初值，可在生成前就地改 */
+  const [hero, setHero] = useState<Hero>(profile.hero)
+  const [heroSheet, setHeroSheet] = useState(false)
+  const [savingHero, setSavingHero] = useState(false)
+
+  useEffect(() => {
+    setHero(profile.hero)
+  }, [profile.hero])
 
   useEffect(() => {
     // 草稿为空时，采用「我的」里的默认偏好
@@ -35,6 +72,20 @@ export default function ComicSettings({ go }: { go: (h: string) => void }) {
   }, [profile.default_style, profile.default_genre, profile.default_length, profile.default_tone])
 
   const set = (p: Partial<Sel>) => setSel((s) => ({ ...s, ...p }))
+
+  /** 本次主角设定：写回 profile，让「我的」里的档案与本次保持一致 */
+  const saveHero = async () => {
+    setSavingHero(true)
+    try {
+      await patchProfile({ hero })
+      setHeroSheet(false)
+      toast('主角设定已用于本次生成')
+    } catch (e: any) {
+      toast(errText(e, '主角设定保存失败'), 'err')
+    } finally {
+      setSavingHero(false)
+    }
+  }
 
   const start = async () => {
     if (busy) return
@@ -94,7 +145,7 @@ export default function ComicSettings({ go }: { go: (h: string) => void }) {
         genre: sel.genre,
         tone: sel.tone,
         length: sel.length,
-        hero: profile.hero,
+        hero,
       })
     } catch (e: any) {
       toast(errText(e, '创建失败，请重试'), 'err')
@@ -183,6 +234,26 @@ export default function ComicSettings({ go }: { go: (h: string) => void }) {
           </div>
         </div>
 
+        {/* E 本次主角 */}
+        <div>
+          <div className="section-title" style={{ marginBottom: 8 }}>
+            <Icon.User style={{ width: 17, height: 17 }} />
+            E · 本次主角
+          </div>
+          <button className="opt" onClick={() => setHeroSheet(true)}>
+            <div className="opt-body">
+              <div className="opt-name">{heroLine(hero)}</div>
+              <div className="opt-desc">
+                {hero.hair || '—'} / {hero.outfit || '—'}
+              </div>
+              <div className="hint" style={{ marginTop: 6 }}>
+                性别、职业、外貌会决定画面里的人物与场景。点这里生成前再核对一次。
+              </div>
+            </div>
+            <Icon.Chevron style={{ width: 18, height: 18, color: 'var(--ink-3)', flex: 'none' }} />
+          </button>
+        </div>
+
         <div className="card-soft">
           <div className="row" style={{ gap: 8 }}>
             <Icon.Sparkle style={{ width: 17, height: 17, color: 'var(--orange)' }} />
@@ -231,6 +302,99 @@ export default function ComicSettings({ go }: { go: (h: string) => void }) {
           ))}
           <button className="btn btn-primary btn-block" onClick={() => setSheet(null)}>
             确定
+          </button>
+        </div>
+      </Sheet>
+
+      {/* 本次主角：生成前核对与修改 */}
+      <Sheet open={heroSheet} title="本次主角设定" onClose={() => setHeroSheet(false)}>
+        <div className="stack">
+          <div className="hint">
+            留空的维度会保持中性，不会替你推断。改完会同时写回「我的 → 主角设定」，下次沿用。
+          </div>
+
+          <div>
+            <div className="label">性别</div>
+            <div className="chips" style={{ marginTop: 8 }}>
+              {GENDERS.map((g) => (
+                <button key={g} className={`chip ${(hero.gender || '不限') === g ? 'on' : ''}`} onClick={() => setHero({ ...hero, gender: g })}>
+                  {g}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="label">职业</div>
+            <div className="chips" style={{ marginTop: 8 }}>
+              <button className={`chip ${!hero.job ? 'on' : ''}`} onClick={() => setHero({ ...hero, job: '' })}>
+                未填写
+              </button>
+              {JOBS.map((j) => (
+                <button key={j.id} className={`chip ${hero.job === j.name ? 'on' : ''}`} onClick={() => setHero({ ...hero, job: j.name })}>
+                  {j.name}
+                </button>
+              ))}
+            </div>
+            <input
+              className="input"
+              style={{ marginTop: 8 }}
+              value={hero.job && !JOB_NAMES.includes(hero.job) ? hero.job : ''}
+              maxLength={20}
+              placeholder="上面没有？直接输入你的职业"
+              onChange={(e) => setHero({ ...hero, job: e.target.value })}
+            />
+          </div>
+
+          <div>
+            <div className="label">年龄感</div>
+            <div className="chips" style={{ marginTop: 8 }}>
+              {AGES.map((a) => (
+                <button key={a} className={`chip ${(hero.age || '不限') === a ? 'on' : ''}`} onClick={() => setHero({ ...hero, age: a })}>
+                  {a}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="label">眼镜</div>
+            <div className="chips" style={{ marginTop: 8 }}>
+              {GLASSES.map((g) => (
+                <button key={g} className={`chip ${(hero.glasses || '不戴') === g ? 'on' : ''}`} onClick={() => setHero({ ...hero, glasses: g })}>
+                  {g}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="label">气质</div>
+            <div className="chips" style={{ marginTop: 8 }}>
+              {VIBES.map((v) => (
+                <button key={v} className={`chip ${(hero.vibe || '不限') === v ? 'on' : ''}`} onClick={() => setHero({ ...hero, vibe: v })}>
+                  {v}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="field">
+            <div className="label">发型</div>
+            <input className="input" value={hero.hair} maxLength={30} onChange={(e) => setHero({ ...hero, hair: e.target.value })} />
+          </div>
+          <div className="field">
+            <div className="label">常穿服装</div>
+            <input className="input" value={hero.outfit} maxLength={40} onChange={(e) => setHero({ ...hero, outfit: e.target.value })} />
+          </div>
+          <div className="field">
+            <div className="label">外貌特征</div>
+            <input className="input" value={hero.features} maxLength={40} onChange={(e) => setHero({ ...hero, features: e.target.value })} />
+          </div>
+
+          <button className="btn btn-primary btn-block" onClick={saveHero} disabled={savingHero}>
+            {savingHero ? <span className="spin" /> : <Icon.Check style={{ width: 18, height: 18 }} />}
+            用于本次生成
           </button>
         </div>
       </Sheet>

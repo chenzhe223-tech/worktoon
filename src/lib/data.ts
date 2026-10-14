@@ -14,6 +14,15 @@ export const DEFAULT_HERO: Hero = {
   features: '戴细框眼镜，表情认真',
   skin: '#F2C9A8',
   ref_path: '',
+  age: '',
+  glasses: '',
+  job: '',
+  vibe: '',
+}
+
+/** 清空主角档案：回到出厂默认，同时丢弃参考图路径（调用方负责删除存储对象） */
+export function resetHero(): Hero {
+  return { ...DEFAULT_HERO }
 }
 
 export const DEFAULT_PROFILE: Profile = {

@@ -1,7 +1,7 @@
 import { cloud, errText, getSession } from './cloud'
 import * as DB from './data'
 import { CancelError, drawPanels, drawPanel, extractFacts, writeStory, ensureStyle } from './ai'
-import { buildArtDirection, GENRE_MAP, SHOT_MAP, shotPlan } from './art'
+import { bibleOf, buildArtDirection, GENRE_MAP, SHOT_MAP, shotPlan } from './art'
 import { sanitizeSvg, svgToPngBlob, uploadPng, clearUrlCache, getSignedUrl } from './img'
 import type { Comic, ComicPanel, Hero } from './types'
 
@@ -112,6 +112,8 @@ export async function run(opts: GenOptions) {
     const refUrl = opts.hero?.ref_path ? await getSignedUrl(opts.hero.ref_path).catch(() => '') : ''
     // 本篇漫画只建一次 Art Direction，所有分镜共享，杜绝画风漂移
     const ad = buildArtDirection(style, String(opts.comicId))
+    // 同理，角色视觉圣经也只建一次：同一篇漫画所有分镜拿到完全一致的角色锚点
+    const bible = bibleOf(opts.hero, String(opts.comicId))
     const genrePrompt = GENRE_MAP[opts.genre]?.prompt || ''
 
     await DB.updateComic(opts.comicId, { status: 'understanding' })
@@ -228,7 +230,7 @@ export async function run(opts: GenOptions) {
         set(opts.comicId, { done: doneCount, percent: pct })
       },
       3,
-      { refUrl: refUrl || undefined, ad, genrePrompt },
+      { refUrl: refUrl || undefined, ad, genrePrompt, bible },
     )
 
     if (signal.aborted) throw new CancelError()
@@ -287,6 +289,8 @@ export async function redrawPanel(comicId: number, panel: ComicPanel, hero: Hero
   const { drawPanel } = await import('./ai')
   const refUrl = hero?.ref_path ? await getSignedUrl(hero.ref_path).catch(() => '') : ''
   const ad = buildArtDirection(style, String(comicId))
+  // 与本篇其他格共用同一份角色圣经，单格重绘不会画成另一个人
+  const bible = bibleOf(hero, String(comicId))
   const svg = await drawPanel({
     panel: storyPanel,
     style,
@@ -295,6 +299,7 @@ export async function redrawPanel(comicId: number, panel: ComicPanel, hero: Hero
     signal: undefined,
     refUrl: refUrl || undefined,
     ad,
+    bible,
     shot: SHOT_MAP[shot] || shotPlan(all0.length || 6)[idx],
     total: all0.length || 6,
     index: idx,
@@ -332,6 +337,7 @@ export async function redrawAll(comicId: number, hero: Hero, styleId: string) {
   const refUrl = hero?.ref_path ? await getSignedUrl(hero.ref_path).catch(() => '') : ''
   // 与首次生成使用同一份 Art Direction（同 comicId + 同画风 → 同结果）
   const ad = buildArtDirection(style, String(comicId))
+  const bible = bibleOf(hero, String(comicId))
   await DB.updateComic(comicId, { status: 'drawing', style: styleId })
   set(comicId, { status: 'running', stage: 3, label: STAGES[3], percent: 35, total: panels.length, done: 0, error: '' })
   const ctrl = new AbortController()
@@ -375,7 +381,7 @@ export async function redrawAll(comicId: number, hero: Hero, styleId: string) {
         set(comicId, { done, percent: Math.min(94, 35 + Math.round((done / Math.max(1, panels.length)) * 58)) })
       },
       3,
-      { refUrl: refUrl || undefined, ad },
+      { refUrl: refUrl || undefined, ad, bible },
     )
     const all = await DB.listPanels(comicId)
     const ok = all.filter((p) => p.status === 'done' && p.image_path)

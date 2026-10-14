@@ -418,6 +418,109 @@ export const TAGS = [
 export const MOODS = ['元气满满', '平静专注', '有点疲惫', '小有成就', '焦虑紧张', '开心满足']
 
 /* ============================================================
+ * 职业档案：只用于匹配场景、道具、服装与动作，绝不用于编造成果
+ * en 字段是喂给画面模型的英文锚点，中文名用于 UI 快选
+ * ============================================================ */
+
+export interface Job {
+  id: string
+  name: string
+  /** 英文锚点：场景 / 道具 / 服装 / 典型动作 */
+  en: string
+}
+
+export const JOBS: Job[] = [
+  {
+    id: 'procurement',
+    name: '采购 / 供应链',
+    en: 'procurement and sourcing specialist. Plausible settings: open-plan office desk, supplier meeting room, video call, warehouse or factory walkway. Props: laptop, quotation spreadsheets and comparison tables, printed spec sheets, calculator, supplier folder, samples, packing list. Attire: smart-casual business wear. Typical actions: comparing numbers on screen, annotating a printed table, taking notes during a call, lining up product samples',
+  },
+  {
+    id: 'sales',
+    name: '销售 / 商务',
+    en: 'sales and business development. Plausible settings: office desk, client meeting room, exhibition booth, on the road with a phone. Props: laptop, CRM screen, proposal document, business cards, contract folder, phone. Attire: business casual with a shirt or blazer. Typical actions: presenting a proposal, dialling or answering a call, shaking hands across a table, reviewing a pipeline list',
+  },
+  {
+    id: 'engineer',
+    name: '研发 / 工程师',
+    en: 'software or hardware engineer. Plausible settings: developer desk with dual monitors, stand-up corner, server room, lab bench. Props: keyboard, code editor on screen, terminal window, circuit board or test rig, sticky notes, headset. Attire: casual shirt or hoodie. Typical actions: typing and debugging, pointing at a screen with a colleague, inspecting a device, thinking with chin on hand',
+  },
+  {
+    id: 'design',
+    name: '设计 / 创意',
+    en: 'designer or creative. Plausible settings: studio desk, pin-up wall, review meeting, print or material sample table. Props: drawing tablet, sketchbook, colour swatches, monitor with a canvas, printed mockup, markers. Attire: relaxed creative casual. Typical actions: sketching, moving elements on a tablet, pinning prints to a wall, comparing two versions side by side',
+  },
+  {
+    id: 'product',
+    name: '产品 / 运营',
+    en: 'product manager or operations specialist. Plausible settings: meeting room with a whiteboard, open office desk, data dashboard on screen. Props: whiteboard with sticky notes, requirement document, roadmap chart, laptop, metrics dashboard. Attire: smart-casual. Typical actions: writing on a whiteboard, rearranging sticky notes, reviewing a dashboard, discussing around a table',
+  },
+  {
+    id: 'finance',
+    name: '财务 / 法务',
+    en: 'finance or legal professional. Plausible settings: quiet office with stacked documents, meeting table, archive shelves. Props: ledger or spreadsheet, printed statements, calculator, stamp, contract folder, filing cabinet. Attire: formal business wear. Typical actions: checking figures line by line, stamping or signing documents, organising folders, explaining a figure to a colleague',
+  },
+  {
+    id: 'hr',
+    name: '人力 / 行政',
+    en: 'HR or administration. Plausible settings: interview room, office desk, training or team space. Props: laptop, resume folder, calendar, onboarding pack, name badge, meeting notes. Attire: neat business casual. Typical actions: interviewing across a table, scheduling on a calendar, welcoming someone, sorting documents',
+  },
+  {
+    id: 'teacher',
+    name: '教育 / 培训',
+    en: 'teacher or trainer. Plausible settings: classroom, training room, whiteboard wall, desk with exercise books. Props: whiteboard and marker, textbooks, projector screen, pointer, student worksheets. Attire: neat and approachable. Typical actions: writing on a board, explaining to a group, reviewing papers, demonstrating with hands',
+  },
+  {
+    id: 'medical',
+    name: '医疗 / 护理',
+    en: 'medical or care professional. Plausible settings: clinic room, nurse station, ward corridor, consultation desk. Props: medical chart, monitor, stethoscope, tray with instruments, gloves, appointment list. Attire: medical coat or scrubs. Typical actions: consulting a patient, recording on a chart, checking a monitor, preparing instruments',
+  },
+  {
+    id: 'retail',
+    name: '零售 / 门店',
+    en: 'retail or store operations. Plausible settings: shop floor, shelf aisle, checkout counter, stock room. Props: product shelves, price tags, handheld scanner, stock box, display stand, receipt roll. Attire: store uniform or apron. Typical actions: arranging shelves, scanning items, restocking, talking with a customer',
+  },
+  {
+    id: 'logistics',
+    name: '物流 / 仓储',
+    en: 'logistics or warehouse operations. Plausible settings: warehouse aisles, loading dock, dispatch desk, delivery vehicle. Props: pallets, cartons, handheld scanner, shipping labels, forklift, clipboard. Attire: workwear with safety vest. Typical actions: checking a packing list, scanning a parcel, moving boxes, coordinating at a dock',
+  },
+  {
+    id: 'media',
+    name: '内容 / 媒体',
+    en: 'content creator or media professional. Plausible settings: desk with microphone or camera, editing suite, shoot corner, meeting table with a script. Props: microphone, camera, tripod, script pages, editing timeline on screen, headphones. Attire: casual creative wear. Typical actions: recording, reviewing a timeline, holding a script, setting up a shot',
+  },
+  {
+    id: 'student',
+    name: '学生 / 研究',
+    en: 'student or researcher. Plausible settings: library desk, study room, laboratory, lecture hall. Props: textbooks, notebook, laptop, lab glassware, printed papers, highlighters. Attire: casual student wear. Typical actions: reading and annotating, writing by hand, running a lab step, discussing at a library table',
+  },
+  {
+    id: 'freelance',
+    name: '自由职业 / 其他',
+    en: 'independent or remote worker. Plausible settings: home desk, cafe table, co-working space. Props: laptop, notebook, coffee cup, phone, task list, headphones. Attire: comfortable casual. Typical actions: typing at a laptop, sketching a plan in a notebook, taking a call, tidying the desk',
+  },
+]
+
+export const JOB_MAP: Record<string, Job> = JOBS.reduce((m, j) => {
+  m[j.id] = j
+  return m
+}, {} as Record<string, Job>)
+
+/** 按职业名取英文锚点；预设表里没有就返回空，由通用规则兜底 */
+export function jobAnchorByName(name: string): string {
+  const s = String(name || '').trim()
+  if (!s) return ''
+  const hit = JOBS.find((j) => j.name === s || j.id === s)
+  return hit ? hit.en : ''
+}
+
+export const GENDERS = ['不限', '男', '女', '中性']
+export const AGES = ['不限', '二十出头', '三十出头', '四十出头', '五十以上']
+export const GLASSES = ['不戴', '细框眼镜', '黑框眼镜', '半框眼镜', '无框眼镜']
+export const VIBES = ['不限', '干练利落', '温和亲切', '沉稳内敛', '开朗外向', '严肃认真']
+
+/* ============================================================
  * 镜头节奏：同一篇漫画内保证景别不重复相邻
  * ============================================================ */
 
@@ -516,6 +619,10 @@ export interface HeroPrompt {
   outfit: string
   features: string
   skin: string
+  age?: string
+  glasses?: string
+  job?: string
+  vibe?: string
 }
 
 export interface PanelPrompt {
@@ -530,15 +637,133 @@ export interface PanelPrompt {
   dialogue?: string
 }
 
+/**
+ * 性别呈现规则。
+ * 中文选项直接塞进英文提示词模型读不懂，这里显式翻译成可执行的画面约束；
+ * 「不限」必须翻译成「刻意中性、禁止推断」，否则模型会自己随手定一个性别，跨格就会漂。
+ */
+function genderRule(g: string): string {
+  const s = String(g || '').trim()
+  if (s === '男' || s === '男性' || /^male$/i.test(s)) {
+    return 'consistently masculine presentation in every panel: male-coded hairstyle, face structure, body silhouette and clothing'
+  }
+  if (s === '女' || s === '女性' || /^female$/i.test(s)) {
+    return 'consistently feminine presentation in every panel: female-coded hairstyle, face structure, body silhouette and clothing'
+  }
+  if (s === '中性' || /^neutral|androgynous$/i.test(s)) {
+    return 'deliberately androgynous gender-neutral presentation in every panel: ambiguous hairstyle and clothing, no gendered styling cues'
+  }
+  // 不限 / 未填写：保持中性，禁止推断
+  return 'gender is NOT specified: keep an intentionally neutral, ambiguous presentation in every panel. Do NOT infer, assume or assign any gender, and do NOT add gendered hairstyle, makeup, body shape or clothing cues'
+}
+
 export function heroText(h: HeroPrompt): string {
-  return [
-    `FIXED MAIN CHARACTER (must look identical in every panel):`,
+  const lines = [
+    `FIXED MAIN CHARACTER (must look like the same person in every panel):`,
     `- Name or reference: ${h.name}`,
-    `- Gender: ${h.gender}`,
-    `- Hair: ${h.hair}`,
-    `- Outfit: ${h.outfit}`,
-    `- Facial and body traits: ${h.features}`,
-    `- Skin tone: ${h.skin}`,
+    `- Gender presentation: ${genderRule(h.gender)}`,
+  ]
+  if (h.age && h.age !== '不限') lines.push(`- Apparent age: ${h.age}`)
+  lines.push(`- Hair: ${h.hair}`)
+  lines.push(`- Outfit: ${h.outfit}`)
+  if (h.glasses && h.glasses !== '不戴') lines.push(`- Eyewear: ${h.glasses}`)
+  lines.push(`- Facial and body traits: ${h.features}`)
+  if (h.vibe && h.vibe !== '不限') lines.push(`- Temperament: ${h.vibe}`)
+  if (h.job) lines.push(`- Occupation: ${h.job}`)
+  lines.push(`- Skin tone: ${h.skin}`)
+  lines.push(
+    `- The gender presentation, apparent age and these traits must stay identical in every panel. Never guess an attribute the profile leaves unspecified.`,
+  )
+  return lines.join('\n')
+}
+
+/* ============================================================
+ * 角色视觉圣经 Character Bible
+ * 与 Art Direction 同层：一篇漫画只生成一次，所有分镜共享。
+ * 只锁定用户「没写」的维度（发色、体型、鞋、配色逻辑），
+ * 一旦与用户填写的文字冲突，明确以文字为准，避免覆盖用户设定。
+ * ============================================================ */
+
+export interface CharacterBible {
+  text: string
+  hair: string
+  top: string
+}
+
+const BIBLE_HAIR = ['#2A2320', '#3E2C22', '#4B3728', '#5B4230', '#1E1B18', '#6B4A34', '#8A6A4B']
+const BIBLE_TOP = ['#4A5A6B', '#6B5A4A', '#3F4F59', '#5C6B5A', '#6E5B6B', '#7A6A4E', '#45525F']
+const BIBLE_BUILD = ['lean and slightly narrow shoulders', 'average build', 'sturdy and broad-shouldered']
+const BIBLE_SHOE = ['dark flat shoes', 'low-top sneakers', 'simple leather shoes']
+
+/**
+ * 从主角档案 + 作品级种子确定性派生角色视觉锚点。
+ * 同一篇漫画 seed 固定 → 每格拿到完全一致的 bible，跨格才不会漂。
+ */
+export function buildCharacterBible(h: HeroPrompt, seed: string): CharacterBible {
+  const base = `${h.name}|${h.gender}|${h.hair}|${h.outfit}|${h.features}|${h.job}|${seed}`
+  const n = hashSeed(base)
+  const hair = BIBLE_HAIR[n % BIBLE_HAIR.length]
+  const top = BIBLE_TOP[(n >> 3) % BIBLE_TOP.length]
+  const build = BIBLE_BUILD[(n >> 6) % BIBLE_BUILD.length]
+  const shoe = BIBLE_SHOE[(n >> 9) % BIBLE_SHOE.length]
+  const accessory = h.glasses && h.glasses !== '不戴' ? `thin eyewear worn in every panel` : 'no recurring accessory'
+
+  const text = [
+    `CHARACTER BIBLE FOR THIS COMIC (identical in every panel, do not vary):`,
+    `- Hair colour: ${hair}. If the written hair description above already states a colour, follow the written description instead.`,
+    `- Body build: ${build}.`,
+    `- Footwear: ${shoe} (when visible).`,
+    `- Recurring accessory: ${accessory}.`,
+    `- Wardrobe colour logic: main garment around ${top}. If this conflicts with the written outfit description, the written description wins.`,
+    `Keep hair colour, body build, face structure and these traits constant across all panels. Only pose, expression, camera distance and local lighting may change.`,
+  ].join('\n')
+  return { text, hair, top }
+}
+
+/** Hero → 角色视觉圣经的便捷入口，供生成链路各处复用，避免重复映射 */
+export function bibleOf(
+  h: {
+    name: string
+    gender: string
+    hair: string
+    outfit: string
+    features: string
+    skin?: string
+    age?: string
+    glasses?: string
+    job?: string
+    vibe?: string
+  },
+  seed: string,
+): CharacterBible {
+  return buildCharacterBible(
+    {
+      name: h.name,
+      gender: h.gender,
+      hair: h.hair,
+      outfit: h.outfit,
+      features: h.features,
+      skin: h.skin || '#F2C9A8',
+      age: h.age || '',
+      glasses: h.glasses || '',
+      job: h.job || '',
+      vibe: h.vibe || '',
+    },
+    seed,
+  )
+}
+
+/** 职业上下文：只影响场景 / 道具 / 服装 / 动作，不得据此编造成果 */
+export function occupationText(job: string): string {
+  const s = String(job || '').trim()
+  if (!s) return ''
+  const anchor = jobAnchorByName(s)
+  return [
+    `[OCCUPATION CONTEXT]`,
+    anchor ? `- The main character works as ${anchor}` : `- The main character works as: ${s}. Choose a plausible setting, props, clothing and actions for this occupation.`,
+    `- Use the occupation ONLY to pick plausible environment, props, clothing and body actions that fit the real event of this panel.`,
+    `- Do NOT invent occupation-specific outcomes, clients, numbers, deals, results or achievements that are absent from the work log.`,
+    `- If the real event of this panel has no occupational link (a walk, a meal, a quiet moment), fall back to a plain everyday environment instead of forcing work props in.`,
   ].join('\n')
 }
 
@@ -552,8 +777,11 @@ export function composePanelPrompt(input: {
   hero: HeroPrompt
   panel: PanelPrompt
   genrePrompt?: string
+  /** 本篇共享的角色视觉圣经，缺省时按角色档案现算一份 */
+  bible?: CharacterBible
 }): string {
   const { style, ad, hero, panel, genrePrompt } = input
+  const bible = input.bible || buildCharacterBible(hero, 'default')
   const blocks: string[] = []
 
   blocks.push(`[QUALITY BASE]\n${COMIC_QUALITY_BASE.positive}`)
@@ -563,6 +791,9 @@ export function composePanelPrompt(input: {
   blocks.push(`[ART STYLE: ${style.name}]\n${style.prompt}\n${style.avoid}`)
   blocks.push(ad.text)
   blocks.push(heroText(hero))
+  blocks.push(bible.text)
+  const occ = occupationText(hero.job || '')
+  if (occ) blocks.push(occ)
   if (genrePrompt) blocks.push(`[GENRE]\n${genrePrompt}`)
   blocks.push(
     [

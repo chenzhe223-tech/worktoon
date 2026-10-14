@@ -28,6 +28,14 @@ export interface Hero {
   features: string
   skin: string
   ref_path: string
+  /** 年龄感，留空表示不指定，模型不得自行推断 */
+  age: string
+  /** 眼镜，留空表示不指定 */
+  glasses: string
+  /** 职业：只用于匹配场景、道具、服装与动作，不用于编造成果 */
+  job: string
+  /** 气质，留空表示不指定 */
+  vibe: string
 }
 
 export interface JournalEntry {
