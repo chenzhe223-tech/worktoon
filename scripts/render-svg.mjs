@@ -18,12 +18,13 @@ for (const name of files) {
   }
   const svg = readFileSync(p, 'utf8')
   try {
+    const W = Number(process.env.W || 520)
     const r = new Resvg(svg, {
       background: '#FBF8F3',
-      fitTo: { mode: 'width', value: 520 },
+      fitTo: { mode: 'width', value: W },
     })
     const png = r.render().asPng()
-    const out = join(OUT, `${name.replace(/\.svg$/, '')}.png`)
+    const out = join(OUT, `${name.replace(/\.svg$/, '')}${W === 520 ? '' : `@${W}`}.png`)
     writeFileSync(out, png)
     console.log(`${name} → ${(png.length / 1024).toFixed(0)} KB`)
   } catch (e) {

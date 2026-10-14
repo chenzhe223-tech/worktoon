@@ -1,5 +1,5 @@
 import { cloud } from './cloud'
-import { PANEL_W, PANEL_H } from './config'
+import { PANEL_W, PANEL_H, RENDER_SCALE } from './config'
 
 const ALLOWED = new Set([
   'svg', 'g', 'defs', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon',
@@ -58,8 +58,29 @@ export function sanitizeSvg(raw: string): string | null {
   return out
 }
 
-export async function svgToPngBlob(svg: string): Promise<Blob> {
-  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg)
+/**
+ * 把清洗后的 SVG 栅格化成 PNG。
+ * 关键：只放大根标签的 width/height，viewBox 保持不变 —— 坐标系不变，
+ * 渲染分辨率翻倍，所以是真高清，不是把 800×1000 位图拉伸。
+ */
+export async function svgToPngBlob(svg: string, scale = RENDER_SCALE): Promise<Blob> {
+  const W = Math.round(PANEL_W * scale)
+  const H = Math.round(PANEL_H * scale)
+
+  let code = svg
+  try {
+    const doc = new DOMParser().parseFromString(svg, 'image/svg+xml')
+    const root = doc?.documentElement
+    if (root && root.nodeName.toLowerCase() === 'svg' && !doc.getElementsByTagName('parsererror').length) {
+      root.setAttribute('width', String(W))
+      root.setAttribute('height', String(H))
+      code = new XMLSerializer().serializeToString(doc)
+    }
+  } catch {
+    /* 解析失败就用原始串，drawImage 会按固有尺寸缩放，不至于崩 */
+  }
+
+  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(code)
   const img = new Image()
   img.decoding = 'sync'
   await new Promise<void>((resolve, reject) => {
@@ -68,13 +89,13 @@ export async function svgToPngBlob(svg: string): Promise<Blob> {
     img.src = url
   })
   const canvas = document.createElement('canvas')
-  canvas.width = PANEL_W
-  canvas.height = PANEL_H
+  canvas.width = W
+  canvas.height = H
   const ctx = canvas.getContext('2d')
   if (!ctx) throw new Error('画布不可用')
   ctx.fillStyle = '#FBF8F3'
-  ctx.fillRect(0, 0, PANEL_W, PANEL_H)
-  ctx.drawImage(img, 0, 0, PANEL_W, PANEL_H)
+  ctx.fillRect(0, 0, W, H)
+  ctx.drawImage(img, 0, 0, W, H)
   return await new Promise<Blob>((resolve, reject) => {
     canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('图片导出失败'))), 'image/png')
   })
